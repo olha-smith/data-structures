@@ -91,6 +91,4 @@ public class ArrayList<T> implements List<T> {
     private boolean isOutOfBounds(int index) {
         return index < 0 || index >= this.size;
     }
-
-
 }

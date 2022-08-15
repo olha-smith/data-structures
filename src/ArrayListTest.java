@@ -59,7 +59,7 @@ class ArrayListTest {
 
     private static void testSize_whenNotEmpty() {
         ArrayList<String> list = new ArrayList<>();
-        int testInt = 2; // todo rename
+        int expectedSize = 2;
         String testString1 = "Hello";
         String testString2 = "World";
 
@@ -67,7 +67,7 @@ class ArrayListTest {
         list.add(testString2);
         int result = list.size();
 
-        TestUtils.assertEquals(result, testInt);
+        TestUtils.assertEquals(result, expectedSize);
     }
 
     private static void testRemove() throws IndexOutOfBoundsException {

@@ -11,5 +11,4 @@ public class TestUtils {
     public static void assertNotNull(Object value) throws AssertionError {
         if (value == null) throw new AssertionError();
     }
-
 }
