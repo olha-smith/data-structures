@@ -87,9 +87,6 @@ class ArrayListTest {
         TestUtils.assertEquals(result2, testString1);
     }
 
-    //todo check that cell index: 1
-    // write test for the last cell of previos array.size
-
     private static void testRemove_OutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
@@ -133,7 +130,5 @@ class ArrayListTest {
 
         testGet_happyPath();
         testGet_exception();
-
-        //todo get tests
     }
 }
