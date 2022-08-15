@@ -1,3 +1,7 @@
+package data.structures.list;
+
+import data.structures.exceptions.IndexOutOfBoundsException;
+
 public interface List<T> {
     int size();
     boolean isEmpty();

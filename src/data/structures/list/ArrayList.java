@@ -1,3 +1,7 @@
+package data.structures.list;
+
+import data.structures.exceptions.IndexOutOfBoundsException;
+
 public class ArrayList<T> implements List<T> {
     private static final int INITIAL_CAPACITY = 5;
     private static final float LOAD_FACTOR = 0.6f;

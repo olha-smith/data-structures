@@ -1,3 +1,7 @@
+package data.structures.list;
+
+import data.structures.exceptions.IndexOutOfBoundsException;
+
 public class LinkedList<T> implements List<T> {
 
     @Override
