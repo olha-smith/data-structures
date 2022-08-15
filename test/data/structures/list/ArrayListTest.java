@@ -86,7 +86,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testRemove() throws IndexOutOfBoundsException {
+    public void testRemove_happyPath() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -104,7 +104,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testRemove_OutOfBounds() {
+    public void testRemove_whenOutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
@@ -122,14 +122,14 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testGet_OutOfBounds() {
+    public void testGet_whenOutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
     }
 
     @Test
-    public void testSet() throws IndexOutOfBoundsException {
+    public void testSet_happyPath() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString1 = "Hello";
         String testString2 = "World";
