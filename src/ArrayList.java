@@ -1,7 +1,8 @@
 public class ArrayList<T> implements List<T> {
     private static final int INITIAL_CAPACITY = 5;
-    // TODO use koef here
-    private static final int ADDITIONAL_CAPACITY = 10;
+    private static final float LOAD_FACTOR = 0.6f;
+    private static final float INCREASE_FACTOR = 1.3f;
+
     private int size = 0;
     private int capacity = INITIAL_CAPACITY;
     private Object[] array = new Object[INITIAL_CAPACITY];
@@ -14,13 +15,11 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.size == 0;
-    }
+    public boolean isEmpty() { return this.size == 0; }
 
     @Override
     public boolean add(T e) {
-        if (this.size == this.capacity) {
+        if (isOverloaded()) {
             increaseCapacity();
         }
 
@@ -34,8 +33,11 @@ public class ArrayList<T> implements List<T> {
 
         return true;
     }
+    private boolean isOverloaded() {
+        return (float) this.size / this.capacity > LOAD_FACTOR;
+    }
     private void increaseCapacity() {
-        this.capacity += ADDITIONAL_CAPACITY;
+        this.capacity *= INCREASE_FACTOR;
         Object[] newArray = new Object[this.capacity];
         for (int j = 0; j < this.size; j++) {
             newArray[j] = this.array[j];
@@ -45,9 +47,9 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public T remove(int index) {
-        if (index < 0 || index >= this.size) {
-            throw new RuntimeException("Index out of bound");
+    public T remove(int index) throws IndexOutOfBoundsException {
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
         }
 
         int lastElementIndex = this.size - 1;
@@ -65,7 +67,22 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     @SuppressWarnings("unchecked")
-    public T get(int index) {
+    public T get(int index) throws IndexOutOfBoundsException {
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return (T) this.array[index];
     }
+
+    @Override
+    public T set(int index, T element) throws IndexOutOfBoundsException {
+        return null;
+    }
+
+    private boolean isOutOfBounds(int index) {
+        return index < 0 || index >= this.size;
+    }
+
+
 }

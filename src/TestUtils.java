@@ -8,4 +8,8 @@ public class TestUtils {
         if (actual != expected) throw new AssertionError();
     }
 
+    public static void assertNotNull(Object value) throws AssertionError {
+        if (value == null) throw new AssertionError();
+    }
+
 }
