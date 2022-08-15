@@ -107,7 +107,7 @@ class ArrayListTest {
         TestUtils.assertEquals(result1, testString1);
     }
 
-    private static void testGet_exception() {
+    private static void testGet_OutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
         try {
@@ -116,6 +116,20 @@ class ArrayListTest {
             TestUtils.assertNotNull(exception);
         }
     }
+
+    private static void testSet() throws IndexOutOfBoundsException {
+        ArrayList<String> list = new ArrayList<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
+
+        list.add(testString1);
+        String replacedString = list.set(0, testString2);
+        String result = list.get(0);
+
+        TestUtils.assertEquals(replacedString, testString1);
+        TestUtils.assertEquals(result, testString2);
+    }
+
     public static void runTests() throws IndexOutOfBoundsException {
         testAdd_whenEmpty();
         testAdd_whenNotEmpty();
@@ -129,6 +143,8 @@ class ArrayListTest {
         testSize_whenNotEmpty();
 
         testGet_happyPath();
-        testGet_exception();
+        testGet_OutOfBounds();
+
+        testSet();
     }
 }

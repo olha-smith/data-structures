@@ -76,8 +76,16 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public T set(int index, T element) throws IndexOutOfBoundsException {
-        return null;
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        T replacedElement = (T) this.array[index];
+        this.array[index] = element;
+
+        return replacedElement;
     }
 
     private boolean isOutOfBounds(int index) {
