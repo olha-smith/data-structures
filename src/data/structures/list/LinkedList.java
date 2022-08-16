@@ -3,7 +3,17 @@ package data.structures.list;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
 public class LinkedList<T> implements List<T> {
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+        Node<T> prev;
 
+        Node(T data, Node<T> next, Node<T> prev) {
+            this.data = data;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
     @Override
     public int size() {
         return 0;
