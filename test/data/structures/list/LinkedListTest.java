@@ -2,6 +2,8 @@ package data.structures.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,4 +32,15 @@ public class LinkedListTest {
         assertEquals(list.get(1), testString2);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 3, 5, 15, 10000})
+    public void testSize(int expectedSize) {
+        LinkedList<Integer> list = new LinkedList<>();
+
+        for (int i = 0; i < expectedSize; i++) {
+            list.add(i);
+        }
+
+        assertEquals(list.size(), expectedSize);
+    }
 }
