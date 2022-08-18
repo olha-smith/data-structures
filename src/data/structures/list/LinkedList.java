@@ -14,19 +14,35 @@ public class LinkedList<T> implements List<T> {
             this.prev = prev;
         }
     }
-    @Override
-    public int size() {
-        return 0;
-    }
+
+    private int size = 0;
+    private Node<T> head;
+    private Node<T> tail;
 
     @Override
-    public boolean isEmpty() {
-        return false;
+    public int size() { return this.size; }
+
+    @Override
+    public boolean isEmpty() { return this.size == 0; }
+
+    private boolean isOutOfBounds(int index) {
+        return index < 0 || index >= this.size;
     }
 
     @Override
     public boolean add(T e) {
-        return false;
+        if (isEmpty()) {
+            Node<T> newNode = new Node<T>(e, null, null);
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            Node<T> prevNode = this.tail;
+            Node<T> newNode = new Node<T>(e, null, prevNode);
+            this.tail = newNode;
+        }
+        ++this.size;
+
+        return true;
     }
 
     @Override
@@ -36,7 +52,15 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<T> currentNode = this.head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        return currentNode.data;
     }
 
     @Override
