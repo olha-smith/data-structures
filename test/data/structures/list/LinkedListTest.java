@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LinkedListTest {
     @Test
     public void testAdd_whenEmpty() throws IndexOutOfBoundsException {
-        //test add and get
         LinkedList<String> list = new LinkedList<>();
         String testString = "Hello";
 
@@ -17,4 +16,18 @@ public class LinkedListTest {
 
         assertEquals(testString, result);
     }
+
+    @Test
+    public void testAdd_whenNotEmpty() throws IndexOutOfBoundsException {
+        LinkedList<String> list = new LinkedList<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
+
+        list.add(testString1);
+        list.add(testString2);
+
+        assertEquals(list.get(0), testString1);
+        assertEquals(list.get(1), testString2);
+    }
+
 }
