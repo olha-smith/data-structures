@@ -39,6 +39,7 @@ public class LinkedList<T> implements List<T> {
             Node<T> prevNode = this.tail;
             Node<T> newNode = new Node<T>(e, null, prevNode);
             this.tail = newNode;
+            this.head.next = newNode;
         }
         ++this.size;
 
