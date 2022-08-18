@@ -111,17 +111,6 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testGet_happyPath() throws IndexOutOfBoundsException {
-        ArrayList<String> list = new ArrayList<>();
-        String testString1 = "Hello";
-
-        list.add(testString1);
-
-        String result1 = list.get(0);
-        assertEquals(result1, testString1);
-    }
-
-    @Test
     public void testGet_whenOutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
