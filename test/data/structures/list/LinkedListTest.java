@@ -8,32 +8,23 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LinkedListTest {
-    @Test
-    public void testAdd_whenEmpty() throws IndexOutOfBoundsException {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 5, 10})
+    public void testAdd_whenNotEmpty(int listSize) throws IndexOutOfBoundsException {
         LinkedList<String> list = new LinkedList<>();
-        String testString = "Hello";
+        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
 
-        list.add(testString);
-        String result = list.get(0);
+        for (int i = 0; i < listSize; i++) {
+            list.add(testElements[i]);
+        }
 
-        assertEquals(testString, result);
+        for (int i = 0; i < listSize; i++) {
+            assertEquals(testElements[i], list.get(i));
+        }
     }
 
     @Test
-    public void testAdd_whenNotEmpty() throws IndexOutOfBoundsException {
-        LinkedList<String> list = new LinkedList<>();
-        String testString1 = "Hello";
-        String testString2 = "World";
-
-        list.add(testString1);
-        list.add(testString2);
-
-        assertEquals(list.get(0), testString1);
-        assertEquals(list.get(1), testString2);
-    }
-
-    @Test
-    public void size_when_emptyList() {
+    public void testSize_whenEmpty() {
         LinkedList<Integer> list = createList(0);
 
         assertEquals(list.size(), 0);
@@ -41,7 +32,7 @@ public class LinkedListTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 5, 10})
-    public void size_when_notEmpty(int expectedSize) {
+    public void testSize_whenNotEmpty(int expectedSize) {
         LinkedList<Integer> list = createList(expectedSize);
 
         Integer[] i = {1, 2, 3, 4};

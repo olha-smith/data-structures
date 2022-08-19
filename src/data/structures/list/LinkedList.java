@@ -36,10 +36,10 @@ public class LinkedList<T> implements List<T> {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            Node<T> prevNode = this.tail;
-            Node<T> newNode = new Node<T>(e, null, prevNode);
+            Node<T> lastNode = this.tail;
+            Node<T> newNode = new Node<T>(e, null, lastNode);
             this.tail = newNode;
-            this.head.next = newNode;
+            lastNode.next = newNode;
         }
         ++this.size;
 

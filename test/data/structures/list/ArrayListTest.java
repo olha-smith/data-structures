@@ -71,6 +71,7 @@ public class ArrayListTest {
         assertEquals(result, testInt);
     }
 
+    //todo parametrized test for size
     @Test
     public void testSize_whenNotEmpty() {
         ArrayList<String> list = new ArrayList<>();
