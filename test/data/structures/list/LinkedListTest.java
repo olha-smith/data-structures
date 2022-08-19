@@ -92,4 +92,17 @@ public class LinkedListTest {
 
         assertEquals(list.remove(2), expectedStrings[2]);
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 5, 9})
+    public void testSet(int index) throws IndexOutOfBoundsException {
+        String[] expectedStrings = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+        LinkedList<String> list = createList(expectedStrings);
+        String elementToAdd = "New Element";
+
+        String result = list.set(index, elementToAdd);
+
+        assertEquals(expectedStrings[index], result);
+        assertEquals(list.get(index), elementToAdd);
+    }
 }

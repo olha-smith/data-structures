@@ -82,7 +82,15 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) throws IndexOutOfBoundsException {
-        return null;
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<T> targetNode = searchNode(index);
+        T oldData = targetNode.data;
+        targetNode.data = element;
+
+        return oldData;
     }
 
     private Node<T> searchNode(int index) {
