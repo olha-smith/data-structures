@@ -64,12 +64,32 @@ public class LinkedListTest {
 
 
     @Test
-    public void testRemove() throws IndexOutOfBoundsException {
+    public void testRemove_fromTail() throws IndexOutOfBoundsException {
         String[] expectedStrings = {"Hello", "World", "!", "" };
         LinkedList<String> list = createList(expectedStrings);
 
         for (int i = expectedStrings.length - 1; i >= 0; i-- ) {
             assertEquals(list.remove(i), expectedStrings[i]);
         }
+    }
+
+    @Test
+    public void testRemove_fromHead() throws IndexOutOfBoundsException {
+        String[] expectedStrings = {"Hello", "World", "!", "" };
+        LinkedList<String> list = createList(expectedStrings);
+
+        int firstNodeIndex = 0;
+
+        for (int i = 0; i < expectedStrings.length; i++) {
+            assertEquals(list.remove(firstNodeIndex), expectedStrings[i]);
+        }
+    }
+
+    @Test
+    public void testRemove_fromMiddle() throws IndexOutOfBoundsException {
+        String[] expectedStrings = {"Hello", "World", "!", "" };
+        LinkedList<String> list = createList(expectedStrings);
+
+        assertEquals(list.remove(2), expectedStrings[2]);
     }
 }

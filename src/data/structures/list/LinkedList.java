@@ -48,7 +48,27 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
-        return null;
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<T> nodeToRemove = searchNode(index);
+        if (this.size == 1) {
+            this.head = null;
+            this.tail = null;
+        } else if (nodeToRemove == this.head) {
+            this.head = nodeToRemove.next;
+            nodeToRemove.next.prev = null;
+        } else if (nodeToRemove == this.tail) {
+            this.tail = nodeToRemove.prev;
+            nodeToRemove.prev.next = null;
+        } else {
+            nodeToRemove.next.prev = nodeToRemove.prev;
+            nodeToRemove.prev.next = nodeToRemove.next;
+        }
+        --this.size;
+
+        return nodeToRemove.data;
     }
 
     @Override
@@ -57,15 +77,20 @@ public class LinkedList<T> implements List<T> {
             throw new IndexOutOfBoundsException();
         }
 
-        Node<T> currentNode = this.head;
-        for (int i = 0; i < index; i++) {
-            currentNode = currentNode.next;
-        }
-        return currentNode.data;
+        return searchNode(index).data;
     }
 
     @Override
     public T set(int index, T element) throws IndexOutOfBoundsException {
         return null;
+    }
+
+    private Node<T> searchNode(int index) {
+        Node<T> currentNode = this.head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+
+        return currentNode;
     }
 }
