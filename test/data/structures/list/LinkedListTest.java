@@ -32,15 +32,53 @@ public class LinkedListTest {
         assertEquals(list.get(1), testString2);
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = {0, 1, 3, 5, 15, 10000})
-    public void testSize(int expectedSize) {
-        LinkedList<Integer> list = new LinkedList<>();
+    @Test
+    public void size_when_emptyList() {
+        LinkedList<Integer> list = createList(0);
 
-        for (int i = 0; i < expectedSize; i++) {
-            list.add(i);
-        }
+        assertEquals(list.size(), 0);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 5, 10})
+    public void size_when_notEmpty(int expectedSize) {
+        LinkedList<Integer> list = createList(expectedSize);
+
+        Integer[] i = {1, 2, 3, 4};
+        createList(i);
 
         assertEquals(list.size(), expectedSize);
+    }
+
+    @SuppressWarnings("unchecked")
+    private <T> LinkedList<T> createList(int n) {
+        LinkedList<T> list = new LinkedList<>();
+
+        for (int i = 0; i < n; i++) {
+            list.add((T) new Object());
+        }
+
+        return list;
+    }
+
+    private <T> LinkedList<T> createList(T[] values) {
+        LinkedList<T> list = new LinkedList<>();
+
+        for (int i = 0; i < values.length; i++) {
+            list.add(values[i]);
+        }
+
+        return list;
+    }
+
+
+    @Test
+    public void testRemove() throws IndexOutOfBoundsException {
+        String[] expectedStrings = {"Hello", "World", "!", "" };
+        LinkedList<String> list = createList(expectedStrings);
+
+        for (int i = expectedStrings.length - 1; i >= 0; i-- ) {
+            assertEquals(list.remove(i), expectedStrings[i]);
+        }
     }
 }
