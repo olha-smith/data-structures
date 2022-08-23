@@ -27,8 +27,8 @@ public class QueueTest {
         String result1 = queue.dequeue();
         String result2 = queue.dequeue();
 
-        assertEquals(testString2, result1);
-        assertEquals(testString1, result2);
+        assertEquals(testString1, result1);
+        assertEquals(testString2, result2);
     }
 
     @Test

@@ -13,7 +13,7 @@ public class Queue<T> {
     }
 
     public T dequeue() throws IndexOutOfBoundsException {
-        return list.remove(list.size() - 1);
+        return list.remove(0);
     }
 
     public T front() throws IndexOutOfBoundsException {
