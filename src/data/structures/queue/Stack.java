@@ -13,4 +13,8 @@ public class Stack<T> {
     public T pop() throws IndexOutOfBoundsException {
         return list.remove(list.size() - 1);
     }
+
+    public T top() throws IndexOutOfBoundsException {
+        return list.get(list.size() - 1);
+    }
 }
