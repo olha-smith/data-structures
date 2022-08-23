@@ -1,5 +1,6 @@
 package data.structures.queue;
 
+import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.list.LinkedList;
 
 public class Queue<T> {
@@ -9,5 +10,9 @@ public class Queue<T> {
     public T enqueue(T e) {
         list.add(e);
         return e;
+    }
+
+    public T dequeue() throws IndexOutOfBoundsException {
+        return list.remove(list.size() - 1);
     }
 }
