@@ -29,4 +29,18 @@ public class QueueTest {
         assertEquals(testString2, result1);
         assertEquals(testString1, result2);
     }
+
+    @Test
+    public void testFront() throws IndexOutOfBoundsException {
+        Queue<String> queue= new Queue<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
+
+        queue.enqueue(testString1);
+        queue.enqueue(testString2);
+
+        assertEquals(testString1, queue.front());
+        queue.dequeue();
+        assertEquals(testString2, queue.front());
+    }
 }
