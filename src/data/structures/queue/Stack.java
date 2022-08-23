@@ -17,4 +17,8 @@ public class Stack<T> {
     public T top() throws IndexOutOfBoundsException {
         return list.get(list.size() - 1);
     }
+
+    public int size() {
+        return list.size();
+    }
 }

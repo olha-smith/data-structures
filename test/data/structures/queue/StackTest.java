@@ -40,4 +40,17 @@ public class StackTest {
 
         assertEquals(testString2, stack.top());
     }
+
+    @Test
+    public void testSize() {
+        Stack<String> stack = new Stack<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
+        int expectedSize = 2;
+
+        stack.push(testString1);
+        stack.push(testString2);
+
+        assertEquals(expectedSize, stack.size());
+    }
 }
