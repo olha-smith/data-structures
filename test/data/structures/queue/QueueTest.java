@@ -41,6 +41,7 @@ public class QueueTest {
 
         assertEquals(testString1, queue.front());
         queue.dequeue();
-        assertEquals(testString2, queue.front());
     }
+
+
 }
