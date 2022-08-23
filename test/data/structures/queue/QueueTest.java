@@ -56,4 +56,17 @@ public class QueueTest {
         queue.dequeue();
         assertEquals(testString1, queue.rear());
     }
+
+    @Test
+    public void testSize() {
+        Queue<String> queue= new Queue<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
+        int expectedSize = 2;
+
+        queue.enqueue(testString1);
+        queue.enqueue(testString2);
+
+        assertEquals(expectedSize, queue.size());
+    }
 }
