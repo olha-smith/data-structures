@@ -43,5 +43,17 @@ public class QueueTest {
         queue.dequeue();
     }
 
+    @Test
+    public void testRear() throws IndexOutOfBoundsException {
+        Queue<String> queue= new Queue<>();
+        String testString1 = "Hello";
+        String testString2 = "World";
 
+        queue.enqueue(testString1);
+        queue.enqueue(testString2);
+
+        assertEquals(testString2, queue.rear());
+        queue.dequeue();
+        assertEquals(testString1, queue.rear());
+    }
 }
