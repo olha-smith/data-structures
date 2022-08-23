@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QueueTest {
     @Test
     public void testEnqueue_whenEmpty() {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString = "Hello";
 
         String result = queue.enqueue(testString);
@@ -18,7 +18,7 @@ public class QueueTest {
 
     @Test
     public void testDequeue() throws IndexOutOfBoundsException {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
 
@@ -33,7 +33,7 @@ public class QueueTest {
 
     @Test
     public void testFront() throws IndexOutOfBoundsException {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
 
@@ -46,7 +46,7 @@ public class QueueTest {
 
     @Test
     public void testRear() throws IndexOutOfBoundsException {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
 
@@ -60,7 +60,7 @@ public class QueueTest {
 
     @Test
     public void testSize() {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
         int expectedSize = 2;
@@ -73,7 +73,7 @@ public class QueueTest {
 
     @Test
     public void testIsEmpty() {
-        Queue<String> queue= new Queue<>();
+        Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
 
         assertTrue(queue.isEmpty());
