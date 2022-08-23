@@ -2,7 +2,8 @@ package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class StackTest {
@@ -52,5 +53,16 @@ public class StackTest {
         stack.push(testString2);
 
         assertEquals(expectedSize, stack.size());
+    }
+
+    @Test
+    public void testIsEmpty() {
+        Stack<String> stack = new Stack<>();
+        String testString1 = "Hello";
+
+        assertTrue(stack.isEmpty());
+
+        stack.push(testString1);
+        assertFalse(stack.isEmpty());
     }
 }
