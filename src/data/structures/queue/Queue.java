@@ -27,4 +27,8 @@ public class Queue<T> {
     public int size() {
         return list.size();
     }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
 }

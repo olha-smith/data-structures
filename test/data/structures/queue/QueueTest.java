@@ -2,7 +2,8 @@ package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class QueueTest {
     @Test
@@ -68,5 +69,16 @@ public class QueueTest {
         queue.enqueue(testString2);
 
         assertEquals(expectedSize, queue.size());
+    }
+
+    @Test
+    public void testIsEmpty() {
+        Queue<String> queue= new Queue<>();
+        String testString1 = "Hello";
+
+        assertTrue(queue.isEmpty());
+
+        queue.enqueue(testString1);
+        assertFalse(queue.isEmpty());
     }
 }
