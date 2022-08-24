@@ -20,6 +20,10 @@ public class Deque<T> {
         return list.remove(list.size() - 1);
     }
 
+    public T deleteFront() throws IndexOutOfBoundsException {
+        return list.remove(0);
+    }
+
     public T getFront() throws IndexOutOfBoundsException {
         return list.get(0);
     }

@@ -47,4 +47,18 @@ public class DequeTest {
             assertEquals(testElements[i], deque.deleteLast());
         }
     }
+
+    @Test
+    public void testDeleteFront() throws IndexOutOfBoundsException {
+        Deque<String> deque = new Deque<>();
+        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+
+        for (int i = 0; i < testElements.length; i++) {
+            deque.insertLast(testElements[i]);
+        }
+
+        for (int i = 0; deque.size() > 0; i++) {
+            assertEquals(testElements[i], deque.deleteFront());
+        }
+    }
 }
