@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DequeTest {
     @ParameterizedTest
@@ -60,5 +60,15 @@ public class DequeTest {
         for (int i = 0; deque.size() > 0; i++) {
             assertEquals(testElements[i], deque.deleteFront());
         }
+    }
+
+    @Test
+    public void testIsEmpty() {
+        Deque<String> deque = new Deque<>();
+        String testString = "Hello";
+        assertTrue(deque.isEmpty());
+
+        deque.insertLast(testString);
+        assertFalse(deque.isEmpty());
     }
 }

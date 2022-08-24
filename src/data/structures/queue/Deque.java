@@ -36,4 +36,8 @@ public class Deque<T> {
         return list.size();
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
 }
