@@ -23,6 +23,21 @@ public class LinkedListTest {
         }
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3, 5, 9})
+    public void testAddByIndex(int index) throws IndexOutOfBoundsException {
+        LinkedList<String> list = new LinkedList<>();
+        String[] testList = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+        String elementToAdd = "New Element";
+
+        for(int i = 0; i < testList.length; i++) {
+            list.add(testList[i]);
+        }
+
+        list.addByIndex(index, elementToAdd);
+        assertEquals(elementToAdd, list.get(index));
+    }
+
     @Test
     public void testSize_whenEmpty() {
         LinkedList<Integer> list = createList(0);

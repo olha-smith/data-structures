@@ -46,6 +46,32 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
+    //dont work with empty list
+    // dont work with adding to list.size index
+    public boolean addByIndex(int index, T e) throws IndexOutOfBoundsException {
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<T> newNode = new Node<>(e, null, null);
+        Node<T> currentNode = this.searchNode(index);
+
+        if (index == 0) {
+            newNode.next = currentNode;
+            currentNode.prev = newNode;
+            this.head = newNode;
+        } else {
+            Node<T> prevNode = currentNode.prev;
+            prevNode.next = newNode;
+            currentNode.prev = newNode;
+            newNode.prev = prevNode;
+            newNode.next = currentNode;
+        }
+        ++this.size;
+
+        return true;
+    }
+
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
