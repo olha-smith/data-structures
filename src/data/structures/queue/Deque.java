@@ -16,6 +16,10 @@ public class Deque<T> {
         return true;
     }
 
+    public T deleteLast() throws IndexOutOfBoundsException {
+        return list.remove(list.size() - 1);
+    }
+
     public T getFront() throws IndexOutOfBoundsException {
         return list.get(0);
     }

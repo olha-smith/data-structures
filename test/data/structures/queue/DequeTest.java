@@ -1,6 +1,7 @@
 package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -30,6 +31,20 @@ public class DequeTest {
             deque.insertFront(testElements[i]);
             assertEquals(testElements[i], deque.getFront());
             assertEquals(i + 1, deque.size() - 1);
+        }
+    }
+
+    @Test
+    public void testDeleteLast() throws IndexOutOfBoundsException {
+        Deque<String> deque = new Deque<>();
+        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+
+        for (int i = 0; i < testElements.length; i++) {
+            deque.insertLast(testElements[i]);
+        }
+
+        for (int i = testElements.length - 1; i >= 0; i--) {
+            assertEquals(testElements[i], deque.deleteLast());
         }
     }
 }
