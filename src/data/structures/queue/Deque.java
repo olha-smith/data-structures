@@ -11,8 +11,21 @@ public class Deque<T> {
         return true;
     }
 
+    public boolean insertFront(T e) throws IndexOutOfBoundsException {
+        list.addByIndex(0, e);
+        return true;
+    }
+
+    public T getFront() throws IndexOutOfBoundsException {
+        return list.get(0);
+    }
+
     public T getRear() throws IndexOutOfBoundsException {
         return list.get(list.size() - 1);
+    }
+
+    public int size() {
+        return list.size();
     }
 
 }
