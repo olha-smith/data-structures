@@ -5,7 +5,7 @@ import data.structures.list.LinkedList;
 
 public class HashMap<K, V> {
     private static final int INITIAL_CAPACITY = 10;
-    LinkedList<Pair<K, LinkedList<V>>>[] buckets = new LinkedList[INITIAL_CAPACITY];
+    private final LinkedList<Pair<K, LinkedList<V>>>[] buckets = new LinkedList[INITIAL_CAPACITY];
 
     boolean put(K key, V value) throws IndexOutOfBoundsException {
         int index = getBucketIndex(key);
@@ -31,11 +31,25 @@ public class HashMap<K, V> {
         return true;
     }
 
-    V removeValue(Pair<K, V> pair) {
+    V removeValue(K key, V value) throws IndexOutOfBoundsException {
+        //receive the value, that you have to delete
+        LinkedList<V> values = this.get(key);
+        for (int i = 0; i < values.size(); i++) {
+            if (values.get(i) == value) {
+                return values.remove(i);
+            }
+        }
+
         return null;
     }
 
-    Pair<K, V> removePair(K key) {
+    Pair<K, LinkedList<V>> removePair(K key) throws IndexOutOfBoundsException {
+        LinkedList<Pair<K, LinkedList<V>>> pairs = buckets[getBucketIndex(key)];
+        for (int i = 0; i < pairs.size(); i++) {
+            if (pairs.get(i).key == key) {
+                return pairs.remove(i);
+            }
+        }
         return null;
     }
 
@@ -52,10 +66,6 @@ public class HashMap<K, V> {
         return null;
     }
 
-    boolean isEquals(Pair<K, V> pair1, Pair<K, V> pair2) {
-        return false;
-    }
-
     private int getHash(String key) {
         int result = 1;
         for (int i = 0; i < key.length(); i++) {
@@ -67,13 +77,5 @@ public class HashMap<K, V> {
     private int getBucketIndex(K key) {
         int hash = getHash(key.toString());
         return hash % buckets.length;
-    }
-
-    int size() {
-        return 0;
-    }
-
-    boolean isEmpty() {
-        return false;
     }
 }

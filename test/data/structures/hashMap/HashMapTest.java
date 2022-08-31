@@ -4,8 +4,7 @@ import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.list.LinkedList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HashMapTest {
     @Test
@@ -20,5 +19,32 @@ public class HashMapTest {
         LinkedList<String> values = hashMap.get(testKey);
 
         assertEquals(testValue, values.get(values.size() - 1));
+    }
+
+    @Test
+    public void removeValueTest() throws IndexOutOfBoundsException {
+        HashMap<String, String> hashMap = new HashMap<>();
+        String testKey = "Nickname";
+        String testValue1 = "Mobster";
+        String testValue2 = "Lobster";
+
+        hashMap.put(testKey, testValue1);
+        hashMap.put(testKey, testValue2);
+
+        assertEquals(testValue2, hashMap.removeValue(testKey, testValue2));
+    }
+
+    @Test
+    public void removePairTest() throws IndexOutOfBoundsException {
+        HashMap<String, String> hashMap = new HashMap<>();
+        String testKey = "Nickname";
+        String testValue = "Mobster";
+
+        hashMap.put(testKey, testValue);
+        hashMap.get(testKey);
+        assertNotNull(hashMap.get(testKey));
+
+        hashMap.removePair(testKey);
+        assertNull(hashMap.get(testKey));
     }
 }
