@@ -1,12 +1,21 @@
 package data.structures.graph;
 
 import data.structures.list.ArrayList;
+import data.structures.list.LinkedList;
+
+import java.util.HashMap;
 
 public class WeightGraph<T> implements WeightedGraph<T> {
 
+    HashMap<Vertex<T>, LinkedList<WeightedEdge<T>>> map = new HashMap<>();
+
     @Override
     public Vertex<T> createVertex(T data) {
-        return null;
+        Vertex<T> vertex = new Vertex<T>(map.size(), data);
+        LinkedList<WeightedEdge<T>> edgeList = new LinkedList<>();
+
+        map.put(vertex, edgeList);
+        return vertex;
     }
 
     @Override
