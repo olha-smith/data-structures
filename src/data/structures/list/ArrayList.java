@@ -2,24 +2,14 @@ package data.structures.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public class ArrayList<T> implements List<T> {
+public class ArrayList<T> extends AbstractList<T> {
     private static final int INITIAL_CAPACITY = 5;
     private static final float LOAD_FACTOR = 0.6f;
     private static final float INCREASE_FACTOR = 1.3f;
 
-    private int size = 0;
     private int capacity = INITIAL_CAPACITY;
     private Object[] array = new Object[INITIAL_CAPACITY];
 
-    public ArrayList() {}
-
-    @Override
-    public int size() {
-        return this.size;
-    }
-
-    @Override
-    public boolean isEmpty() { return this.size == 0; }
 
     @Override
     public boolean add(T e) {
@@ -37,9 +27,17 @@ public class ArrayList<T> implements List<T> {
 
         return true;
     }
+
+    @Override
+    public boolean add(int index, T e) throws IndexOutOfBoundsException {
+        // todo implement
+        return false;
+    }
+
     private boolean isOverloaded() {
         return (float) this.size / this.capacity > LOAD_FACTOR;
     }
+
     private void increaseCapacity() {
         this.capacity *= INCREASE_FACTOR;
         Object[] newArray = new Object[this.capacity];
@@ -92,7 +90,4 @@ public class ArrayList<T> implements List<T> {
         return replacedElement;
     }
 
-    private boolean isOutOfBounds(int index) {
-        return index < 0 || index >= this.size;
-    }
 }

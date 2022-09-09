@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ArrayListTest {
+class ArrayListTest {
 
     private static final int INITIAL_CAPACITY = 5;
 
     @Test
-    public void testAdd_whenEmpty() throws IndexOutOfBoundsException {
+    void testAdd_whenEmpty() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString = "Hello";
 
@@ -22,7 +22,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testAdd_whenNotEmpty() throws IndexOutOfBoundsException {
+    void testAdd_whenNotEmpty() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -35,7 +35,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testAdd_whenFull() throws IndexOutOfBoundsException {
+    void testAdd_whenFull() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String[] expectedStrings = {"Hello", "World", "!", "I", "like", "beer"};
 
@@ -51,7 +51,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testAdd_withInteger() throws IndexOutOfBoundsException {
+    void testAdd_withInteger() throws IndexOutOfBoundsException {
         ArrayList<Integer> list = new ArrayList<>();
         int testInt = 1;
 
@@ -62,7 +62,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testSize_whenEmpty() {
+    void testSize_whenEmpty() {
         ArrayList<String> list = new ArrayList<>();
         int testInt = 0;
 
@@ -73,7 +73,7 @@ public class ArrayListTest {
 
     //todo parametrized test for size
     @Test
-    public void testSize_whenNotEmpty() {
+    void testSize_whenNotEmpty() {
         ArrayList<String> list = new ArrayList<>();
         int expectedSize = 2;
         String testString1 = "Hello";
@@ -87,7 +87,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testRemove_happyPath() throws IndexOutOfBoundsException {
+    void testRemove_happyPath() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -105,21 +105,21 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testRemove_whenOutOfBounds() {
+    void testRemove_whenOutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
     }
 
     @Test
-    public void testGet_whenOutOfBounds() {
+    void testGet_whenOutOfBounds() {
         ArrayList<String> list = new ArrayList<>();
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(0));
     }
 
     @Test
-    public void testSet_happyPath() throws IndexOutOfBoundsException {
+    void testSet_happyPath() throws IndexOutOfBoundsException {
         ArrayList<String> list = new ArrayList<>();
         String testString1 = "Hello";
         String testString2 = "World";

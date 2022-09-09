@@ -2,7 +2,8 @@ package data.structures.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T> extends AbstractList<T> {
+
     private static class Node<T> {
         T data;
         Node<T> next;
@@ -15,19 +16,8 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    private int size = 0;
     private Node<T> head;
     private Node<T> tail;
-
-    @Override
-    public int size() { return this.size; }
-
-    @Override
-    public boolean isEmpty() { return this.size == 0; }
-
-    private boolean isOutOfBounds(int index) {
-        return index < 0 || index >= this.size;
-    }
 
     @Override
     public boolean add(T e) {
@@ -48,7 +38,7 @@ public class LinkedList<T> implements List<T> {
 
     //dont work with empty list
     // dont work with adding to list.size index
-    public boolean addByIndex(int index, T e) throws IndexOutOfBoundsException {
+    public boolean add(int index, T e) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }

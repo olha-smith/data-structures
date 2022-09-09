@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class QueueTest {
+class QueueTest {
     @Test
-    public void testEnqueue_whenEmpty() {
+    void testEnqueue_whenEmpty() {
         Queue<String> queue = new Queue<>();
         String testString = "Hello";
 
@@ -17,7 +17,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testDequeue() throws IndexOutOfBoundsException {
+    void testDequeue() throws IndexOutOfBoundsException {
         Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -32,7 +32,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testFront() throws IndexOutOfBoundsException {
+    void testFront() throws IndexOutOfBoundsException {
         Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -45,7 +45,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testRear() throws IndexOutOfBoundsException {
+    void testRear() throws IndexOutOfBoundsException {
         Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -54,12 +54,12 @@ public class QueueTest {
         queue.enqueue(testString2);
 
         assertEquals(testString2, queue.rear());
-        queue.dequeue();
-        assertEquals(testString1, queue.rear());
+        assertEquals(testString1, queue.dequeue());
+        assertEquals(testString2, queue.rear());
     }
 
     @Test
-    public void testSize() {
+    void testSize() {
         Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -72,7 +72,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testIsEmpty() {
+    void testIsEmpty() {
         Queue<String> queue = new Queue<>();
         String testString1 = "Hello";
 

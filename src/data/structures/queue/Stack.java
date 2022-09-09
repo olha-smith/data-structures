@@ -1,10 +1,9 @@
 package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.list.LinkedList;
 
-public class Stack<T> {
-    private LinkedList<T> list = new LinkedList<>();
+public class Stack<T> extends AbstractListBasedCollection<T> {
+
     public T push(T e) {
         list.add(e);
         return e;
@@ -16,13 +15,5 @@ public class Stack<T> {
 
     public T top() throws IndexOutOfBoundsException {
         return list.get(list.size() - 1);
-    }
-
-    public int size() {
-        return list.size();
-    }
-
-    public boolean isEmpty() {
-        return list.isEmpty();
     }
 }

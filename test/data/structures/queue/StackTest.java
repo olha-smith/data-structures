@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StackTest {
+class StackTest {
     @Test
-    public void testPush() {
+    void testPush() {
         Stack<String> stack = new Stack<>();
         String testString = "Hello";
 
@@ -17,7 +17,7 @@ public class StackTest {
     }
 
     @Test
-    public void testPop() throws IndexOutOfBoundsException {
+    void testPop() throws IndexOutOfBoundsException {
         Stack<String> stack = new Stack<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -30,7 +30,7 @@ public class StackTest {
     }
 
     @Test
-    public void testTop() throws IndexOutOfBoundsException {
+    void testTop() throws IndexOutOfBoundsException {
         Stack<String> stack = new Stack<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -42,7 +42,7 @@ public class StackTest {
     }
 
     @Test
-    public void testSize() {
+    void testSize() {
         Stack<String> stack = new Stack<>();
         String testString1 = "Hello";
         String testString2 = "World";
@@ -55,7 +55,7 @@ public class StackTest {
     }
 
     @Test
-    public void testIsEmpty() {
+    void testIsEmpty() {
         Stack<String> stack = new Stack<>();
         String testString1 = "Hello";
 

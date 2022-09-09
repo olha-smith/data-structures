@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DequeTest {
+class DequeTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 5, 10})
-    public void testInsertLast(int dequeSize) throws IndexOutOfBoundsException {
+    void testInsertLast(int dequeSize) throws IndexOutOfBoundsException {
         Deque<String> deque = new Deque<>();
         String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
 
@@ -22,7 +24,7 @@ public class DequeTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 5, 10})
-    public void testInsertFront(int dequeSize) throws IndexOutOfBoundsException {
+    void testInsertFront(int dequeSize) throws IndexOutOfBoundsException {
         Deque<String> deque = new Deque<>();
         String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
         deque.insertLast("");
@@ -35,7 +37,7 @@ public class DequeTest {
     }
 
     @Test
-    public void testDeleteLast() throws IndexOutOfBoundsException {
+    void testDeleteLast() throws IndexOutOfBoundsException {
         Deque<String> deque = new Deque<>();
         String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
 
@@ -49,7 +51,7 @@ public class DequeTest {
     }
 
     @Test
-    public void testDeleteFront() throws IndexOutOfBoundsException {
+    void testDeleteFront() throws IndexOutOfBoundsException {
         Deque<String> deque = new Deque<>();
         String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
 
@@ -63,7 +65,7 @@ public class DequeTest {
     }
 
     @Test
-    public void testIsEmpty() {
+    void testIsEmpty() {
         Deque<String> deque = new Deque<>();
         String testString = "Hello";
         assertTrue(deque.isEmpty());

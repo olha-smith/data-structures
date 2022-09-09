@@ -1,10 +1,8 @@
 package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.list.LinkedList;
 
-public class Deque<T> {
-    private LinkedList<T> list = new LinkedList<>();
+public class Deque<T> extends AbstractListBasedCollection<T> {
 
     public boolean insertLast(T e) {
         list.add(e);
@@ -12,7 +10,7 @@ public class Deque<T> {
     }
 
     public boolean insertFront(T e) throws IndexOutOfBoundsException {
-        list.addByIndex(0, e);
+        list.add(0, e);
         return true;
     }
 
@@ -30,14 +28,6 @@ public class Deque<T> {
 
     public T getRear() throws IndexOutOfBoundsException {
         return list.get(list.size() - 1);
-    }
-
-    public int size() {
-        return list.size();
-    }
-
-    public boolean isEmpty() {
-        return list.isEmpty();
     }
 
 }

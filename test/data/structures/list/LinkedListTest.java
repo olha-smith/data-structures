@@ -34,7 +34,7 @@ public class LinkedListTest {
             list.add(testList[i]);
         }
 
-        list.addByIndex(index, elementToAdd);
+        list.add(index, elementToAdd);
         assertEquals(elementToAdd, list.get(index));
     }
 
