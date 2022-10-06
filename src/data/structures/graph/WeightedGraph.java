@@ -1,6 +1,6 @@
 package data.structures.graph;
 
-import data.structures.list.ArrayList;
+import java.util.ArrayList;
 
 public interface WeightedGraph<T> {
 
