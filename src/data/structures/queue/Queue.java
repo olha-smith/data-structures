@@ -20,4 +20,8 @@ public class Queue<T> extends AbstractListBasedCollection<T> {
     public T rear() throws IndexOutOfBoundsException {
         return list.get(list.size() - 1);
     }
+
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
 }
