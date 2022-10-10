@@ -1,9 +1,9 @@
 package data.structures.graph;
 
 public class WeightedEdge<T> {
-    Vertex<T> from;
-    Vertex<T> to;
-    Double weight;
+    public Vertex<T> from;
+    public Vertex<T> to;
+    public Double weight;
 
     public WeightedEdge(Vertex<T> from, Vertex<T> to, Double weight) {
         this.from = from;
