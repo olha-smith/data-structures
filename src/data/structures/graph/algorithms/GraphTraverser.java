@@ -52,19 +52,13 @@ public class GraphTraverser<T> {
                 visitedVertices.add(currentVertex);
             }
 
-            boolean hasUnvisitedNeighbors =
-                    edges.stream().filter(edge -> !visitedVertices.contains(edge.to)).toList().size() != 0;
+            List<WeightedEdge<T>> unvisitedVertices =
+                    edges.stream().filter(edge -> !visitedVertices.contains(edge.to)).toList();
 
-            if (edges.isEmpty() || !hasUnvisitedNeighbors) {
+            if (unvisitedVertices.size() == 0) {
                 goingToVisitStack.pop();
-                continue;
-            }
-
-            for (WeightedEdge<T> edge : edges) {
-                if (!visitedVertices.contains(edge.to)) {
-                    goingToVisitStack.push(edge.to);
-                    break;
-                }
+            } else {
+                goingToVisitStack.push(unvisitedVertices.get(0).to);
             }
         }
 
