@@ -46,4 +46,13 @@ class GraphTraverserTest {
         GraphTraverser<Integer> traverser = buildTraverser(graph);
         assertEquals(expectedList, traverser.breadthFirstSearch(startVertex));
     }
+
+    @Test
+    void testDepthFirstSearch() throws IndexOutOfBoundsException {
+        WeightGraph<Integer> graph = buildGraph();
+        List<Integer> expectedList = Arrays.asList(1, 2, 4, 5, 3);
+
+        GraphTraverser<Integer> traverser = buildTraverser(graph);
+        assertEquals(expectedList, traverser.depthFirstSearch(startVertex));
+    }
 }

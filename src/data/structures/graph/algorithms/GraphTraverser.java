@@ -5,6 +5,7 @@ import data.structures.graph.Vertex;
 import data.structures.graph.WeightedEdge;
 import data.structures.graph.WeightedGraph;
 import data.structures.queue.Queue;
+import data.structures.queue.Stack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class GraphTraverser<T> {
         ArrayList<Vertex<T>> visitedVertices = new ArrayList<>();
         goingToVisitQueue.enqueue(start);
 
-        while(!goingToVisitQueue.isEmpty()) {
+        while (!goingToVisitQueue.isEmpty()) {
             Vertex<T> currentVertex = goingToVisitQueue.dequeue();
             visitedVertices.add(currentVertex);
             ArrayList<WeightedEdge<T>> edges = graph.getEdges(currentVertex);
@@ -37,9 +38,36 @@ public class GraphTraverser<T> {
         return visitedVertices.stream().map(Vertex::getData).toList();
     }
 
-    public List<T> depthFirstSearch() {
-        // todo implement
-        return null;
-    }
+    public List<T> depthFirstSearch(Vertex<T> start) throws IndexOutOfBoundsException {
+        Stack<Vertex<T>> goingToVisitStack = new Stack<>();
+        ArrayList<Vertex<T>> visitedVertices = new ArrayList<>();
 
+        goingToVisitStack.push(start);
+
+        while (!goingToVisitStack.isEmpty()) {
+            Vertex<T> currentVertex = goingToVisitStack.top();
+            ArrayList<WeightedEdge<T>> edges = graph.getEdges(currentVertex);
+
+            if (!visitedVertices.contains(currentVertex)) {
+                visitedVertices.add(currentVertex);
+            }
+
+            boolean hasUnvisitedNeighbors =
+                    edges.stream().filter(edge -> !visitedVertices.contains(edge.to)).toList().size() != 0;
+
+            if (edges.isEmpty() || !hasUnvisitedNeighbors) {
+                goingToVisitStack.pop();
+                continue;
+            }
+
+            for (WeightedEdge<T> edge : edges) {
+                if (!visitedVertices.contains(edge.to)) {
+                    goingToVisitStack.push(edge.to);
+                    break;
+                }
+            }
+        }
+
+        return visitedVertices.stream().map(Vertex::getData).toList();
+    }
 }
