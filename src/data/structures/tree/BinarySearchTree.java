@@ -4,6 +4,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     private BinaryTreeNode<T> rootNode;
 
+    private class BinaryTreeNode<T extends Comparable<T>> {
+        T data;
+        BinaryTreeNode<T> parent;
+        BinaryTreeNode<T> rightChild;
+        BinaryTreeNode<T> leftChild;
+
+        BinaryTreeNode(T data, BinaryTreeNode<T> parent, BinaryTreeNode<T> rightChild, BinaryTreeNode<T> leftChild) {
+            this.data = data;
+            this.parent = parent;
+            this.rightChild = rightChild;
+            this.leftChild = leftChild;
+        }
+    }
+
     public boolean add(T data) {
         if (this.isEmpty()) {
             rootNode = new BinaryTreeNode<>(data, null,null, null);
