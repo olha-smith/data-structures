@@ -10,7 +10,7 @@ abstract class AbstractListBasedCollection<T> {
         return list.size();
     }
 
-    protected boolean isEmpty() {
+    public boolean isEmpty() {
         return list.isEmpty();
     }
 
