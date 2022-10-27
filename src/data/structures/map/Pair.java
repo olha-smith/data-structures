@@ -1,4 +1,4 @@
-package data.structures.hashMap;
+package data.structures.map;
 
 public class Pair<K, V> {
     K key;

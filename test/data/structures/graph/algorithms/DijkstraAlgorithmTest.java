@@ -1,9 +1,10 @@
 package data.structures.graph.algorithms;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.graph.EdgeType;
-import data.structures.graph.Vertex;
-import data.structures.graph.WeightGraph;
+import data.structures.traversable.graph.EdgeType;
+import data.structures.traversable.graph.Vertex;
+import data.structures.traversable.graph.WeightGraph;
+import data.structures.traversable.algorithms.DijkstraAlgorithm;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

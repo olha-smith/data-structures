@@ -1,10 +1,10 @@
-package data.structures.graph.algorithms;
+package data.structures.traversable.algorithms;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.graph.Vertex;
-import data.structures.graph.WeightedEdge;
-import data.structures.graph.WeightedGraph;
-import data.structures.queue.Queue;
+import data.structures.traversable.graph.Vertex;
+import data.structures.traversable.graph.WeightedEdge;
+import data.structures.traversable.graph.WeightedGraph;
+import data.structures.collection.Queue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class DijkstraAlgorithm<T> {
     private final WeightedGraph<T> graph;
 
-    DijkstraAlgorithm(WeightedGraph<T> graph) {
+    public DijkstraAlgorithm(WeightedGraph<T> graph) {
         this.graph = graph;
     }
 

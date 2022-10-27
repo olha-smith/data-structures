@@ -1,4 +1,4 @@
-package data.structures.graph;
+package data.structures.traversable.graph;
 
 public class WeightedEdge<T> {
     public Vertex<T> from;

@@ -1,5 +1,6 @@
 package data.structures.graph;
 
+import data.structures.traversable.graph.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ class  WeightGraphTest {
         String testString = "Hello";
 
         Vertex<String> vertex = graph.createVertex(testString);
-        Assertions.assertEquals(testString, vertex.data);
+        Assertions.assertEquals(testString, vertex.getData());
     }
 
     @Test

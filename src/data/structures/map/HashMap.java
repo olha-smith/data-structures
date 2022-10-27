@@ -1,9 +1,9 @@
-package data.structures.hashMap;
+package data.structures.map;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.list.LinkedList;
+import data.structures.collection.list.LinkedList;
 
-public class HashMap<K, V> {
+public class HashMap<K, V> implements Map {
     private static final int INITIAL_CAPACITY = 10;
     private final LinkedList<Pair<K, LinkedList<V>>>[] buckets = new LinkedList[INITIAL_CAPACITY];
 

@@ -1,11 +1,11 @@
-package data.structures.graph.algorithms;
+package data.structures.traversable.algorithms;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.graph.Vertex;
-import data.structures.graph.WeightedEdge;
-import data.structures.graph.WeightedGraph;
-import data.structures.queue.Queue;
-import data.structures.queue.Stack;
+import data.structures.traversable.graph.Vertex;
+import data.structures.traversable.graph.WeightedEdge;
+import data.structures.traversable.graph.WeightedGraph;
+import data.structures.collection.Queue;
+import data.structures.collection.Stack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class GraphTraverser<T> {
 
     private final WeightedGraph<T> graph;
 
-    GraphTraverser(WeightedGraph<T> graph) {
+    public GraphTraverser(WeightedGraph<T> graph) {
         this.graph = graph;
     }
 

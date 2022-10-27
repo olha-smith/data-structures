@@ -1,4 +1,4 @@
-package data.structures.graph;
+package data.structures.traversable.graph;
 
 public class Vertex<T> {
     int index;

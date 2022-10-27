@@ -1,7 +1,7 @@
-package data.structures.hashMap;
+package data.structures.map;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.list.LinkedList;
+import data.structures.collection.list.LinkedList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

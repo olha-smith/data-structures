@@ -1,5 +1,6 @@
 package data.structures.list;
 
+import data.structures.collection.list.ArrayList;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 

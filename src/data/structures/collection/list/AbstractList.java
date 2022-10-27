@@ -1,4 +1,4 @@
-package data.structures.list;
+package data.structures.collection.list;
 
 abstract class AbstractList<T> implements List<T> {
 

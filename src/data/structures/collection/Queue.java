@@ -1,8 +1,11 @@
-package data.structures.queue;
+package data.structures.collection;
 
+import data.structures.collection.list.LinkedList;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public class Queue<T> extends AbstractListBasedCollection<T> {
+public class Queue<T> {
+
+    private LinkedList<T> list = new LinkedList<>();
 
     public T enqueue(T e) {
         list.add(e);
@@ -23,5 +26,9 @@ public class Queue<T> extends AbstractListBasedCollection<T> {
 
     public boolean isEmpty() {
         return list.isEmpty();
+    }
+
+    public int size() {
+        return list.size();
     }
 }

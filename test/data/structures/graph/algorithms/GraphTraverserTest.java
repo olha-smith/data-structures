@@ -1,10 +1,11 @@
 package data.structures.graph.algorithms;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.graph.EdgeType;
-import data.structures.graph.Vertex;
-import data.structures.graph.WeightGraph;
+import data.structures.traversable.graph.EdgeType;
+import data.structures.traversable.graph.Vertex;
+import data.structures.traversable.graph.WeightGraph;
 
+import data.structures.traversable.algorithms.GraphTraverser;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,7 +52,7 @@ class GraphTraverserTest {
     void testDepthFirstSearch() throws IndexOutOfBoundsException {
         WeightGraph<Integer> graph = buildGraph();
         List<Integer> expectedList = Arrays.asList(1, 2, 4, 5, 3);
-
+//todo remove builder for traverser, just use new GraphTraverser(graph) instead
         GraphTraverser<Integer> traverser = buildTraverser(graph);
         assertEquals(expectedList, traverser.depthFirstSearch(startVertex));
     }

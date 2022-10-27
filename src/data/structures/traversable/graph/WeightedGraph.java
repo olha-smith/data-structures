@@ -1,4 +1,4 @@
-package data.structures.graph;
+package data.structures.traversable.graph;
 
 import java.util.ArrayList;
 

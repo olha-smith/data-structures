@@ -1,4 +1,4 @@
-package data.structures.list;
+package data.structures.collection.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 

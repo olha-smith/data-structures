@@ -1,16 +1,16 @@
-package data.structures.tree;
+package data.structures.traversable.tree;
 
 public class BinarySearchTree<T extends Comparable<T>> {
 
-    private BinaryTreeNode<T> rootNode;
+    private BinaryTreeNode rootNode;
 
-    private class BinaryTreeNode<T extends Comparable<T>> {
+    private class BinaryTreeNode implements Tree {
         T data;
-        BinaryTreeNode<T> parent;
-        BinaryTreeNode<T> rightChild;
-        BinaryTreeNode<T> leftChild;
+        BinaryTreeNode parent;
+        BinaryTreeNode rightChild;
+        BinaryTreeNode leftChild;
 
-        BinaryTreeNode(T data, BinaryTreeNode<T> parent, BinaryTreeNode<T> rightChild, BinaryTreeNode<T> leftChild) {
+        BinaryTreeNode(T data, BinaryTreeNode parent, BinaryTreeNode rightChild, BinaryTreeNode leftChild) {
             this.data = data;
             this.parent = parent;
             this.rightChild = rightChild;
@@ -20,11 +20,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
 
     public boolean add(T data) {
         if (this.isEmpty()) {
-            rootNode = new BinaryTreeNode<>(data, null,null, null);
+            rootNode = new BinaryTreeNode(data, null,null, null);
             return true;
         }
 
-        BinaryTreeNode<T> currentNode = rootNode;
+        BinaryTreeNode currentNode = rootNode;
         while (data != currentNode.data) {
             Integer compareValue = data.compareTo(currentNode.data);
 
@@ -33,7 +33,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                     currentNode = currentNode.leftChild;
                     continue;
                 } else {
-                    currentNode.leftChild = new BinaryTreeNode<>(data, currentNode,null, null);
+                    currentNode.leftChild = new BinaryTreeNode(data, currentNode,null, null);
                     return true;
                 }
             }
@@ -42,7 +42,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 if (currentNode.rightChild != null) {
                     currentNode = currentNode.rightChild;
                 } else {
-                    currentNode.rightChild = new BinaryTreeNode<>(data, currentNode,null, null);
+                    currentNode.rightChild = new BinaryTreeNode(data, currentNode,null, null);
                     return true;
                 }
             }
@@ -52,7 +52,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean remove(T data) {
-        BinaryTreeNode<T> removableNode = search(data);
+        BinaryTreeNode removableNode = search(data);
 
         if (removableNode != null) {
             if (removableNode == rootNode) {
@@ -77,12 +77,12 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return (search(data) != null);
     }
 
-    private BinaryTreeNode<T> search(T data) {
-        BinaryTreeNode<T> currentNode = rootNode;
+    private BinaryTreeNode search(T data) {
+        BinaryTreeNode currentNode = rootNode;
 
         while (currentNode.data != data) {
             Integer compareValue = data.compareTo(currentNode.data);
-            BinaryTreeNode<T> targetChild;
+            BinaryTreeNode targetChild;
 
             if (compareValue < 0) {
                 targetChild = currentNode.leftChild;
