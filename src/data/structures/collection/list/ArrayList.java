@@ -2,14 +2,35 @@ package data.structures.collection.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public class ArrayList<T> extends AbstractList<T> {
-    private static final int INITIAL_CAPACITY = 5;
-    private static final float LOAD_FACTOR = 0.6f;
-    private static final float INCREASE_FACTOR = 1.3f;
+public class ArrayList<T> implements List<T> {
+    static final int INITIAL_CAPACITY = 5;
+    static final float LOAD_FACTOR = 0.6f;
+    static final float INCREASE_FACTOR = 1.3f;
 
     private int capacity = INITIAL_CAPACITY;
-    private Object[] array = new Object[INITIAL_CAPACITY];
+    @SuppressWarnings("unchecked") private T[] array = (T[]) new Object[INITIAL_CAPACITY];
 
+    protected int size = 0;
+
+    @Override
+    public int size() { return this.size; }
+
+    @Override
+    public boolean isEmpty() { return this.size == 0; }
+
+    @Override
+    public boolean contains(T data) {
+        for (int i = 0; i < size; i++) {
+            if (this.array[i] == data) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean isOutOfBounds(int index) {
+        return index < 0 || index >= this.size;
+    }
 
     @Override
     public boolean add(T e) {
@@ -30,8 +51,28 @@ public class ArrayList<T> extends AbstractList<T> {
 
     @Override
     public boolean add(int index, T e) throws IndexOutOfBoundsException {
-        // todo implement
-        return false;
+        if (index > this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        if (isOverloaded()) {
+            increaseCapacity();
+        }
+
+        if (index != this.size) {
+            shiftFrom(index);
+        }
+
+        this.array[index] = e;
+        this.size++;
+
+        return true;
+    }
+
+    private void shiftFrom(int index) {
+        for (int i = this.size; i >= index; i--) {
+            this.array[i + 1] = this.array[i];
+        }
     }
 
     private boolean isOverloaded() {
@@ -40,7 +81,7 @@ public class ArrayList<T> extends AbstractList<T> {
 
     private void increaseCapacity() {
         this.capacity *= INCREASE_FACTOR;
-        Object[] newArray = new Object[this.capacity];
+        @SuppressWarnings("unchecked") T[] newArray = (T[]) new Object[this.capacity];
         for (int j = 0; j < this.size; j++) {
             newArray[j] = this.array[j];
         }
@@ -48,14 +89,13 @@ public class ArrayList<T> extends AbstractList<T> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T remove(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }
 
         int lastElementIndex = this.size - 1;
-        T removedElement = (T) this.array[index];
+        T removedElement = this.array[index];
 
         for (int i = index; i < lastElementIndex; i++) {
             this.array[i] = this.array[i + 1];
@@ -68,26 +108,27 @@ public class ArrayList<T> extends AbstractList<T> {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T get(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }
 
-        return (T) this.array[index];
+        return this.array[index];
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public T set(int index, T element) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();
         }
 
-        T replacedElement = (T) this.array[index];
+        T replacedElement = this.array[index];
         this.array[index] = element;
 
         return replacedElement;
     }
 
+    int getCapacity() {
+        return capacity;
+    }
 }

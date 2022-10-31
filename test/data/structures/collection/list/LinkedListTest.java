@@ -1,6 +1,5 @@
-package data.structures.list;
+package data.structures.collection.list;
 
-import data.structures.collection.list.LinkedList;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
