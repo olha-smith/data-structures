@@ -7,13 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LinkedListTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 5, 10})
     public void testAdd_whenNotEmpty(int listSize) throws IndexOutOfBoundsException {
         LinkedList<String> list = new LinkedList<>();
-        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+        String[] testElements = {"Hello", "," ," Sweetie", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
 
         for (int i = 0; i < listSize; i++) {
             list.add(testElements[i]);
@@ -25,13 +26,13 @@ public class LinkedListTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 5, 9})
+    @ValueSource(ints = {0, 1, 2, 3, 5, 9, 10})
     public void testAddByIndex(int index) throws IndexOutOfBoundsException {
         LinkedList<String> list = new LinkedList<>();
-        String[] testList = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+        String[] testList = {"Hello", "," ," Sweetie", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
         String elementToAdd = "New Element";
 
-        for(int i = 0; i < testList.length; i++) {
+        for (int i = 0; i < testList.length; i++) {
             list.add(testList[i]);
         }
 
@@ -112,7 +113,7 @@ public class LinkedListTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3, 5, 9})
     public void testSet(int index) throws IndexOutOfBoundsException {
-        String[] expectedStrings = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+        String[] expectedStrings = {"Hello", "," ," Sweetie", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
         LinkedList<String> list = createList(expectedStrings);
         String elementToAdd = "New Element";
 
@@ -120,5 +121,15 @@ public class LinkedListTest {
 
         assertEquals(expectedStrings[index], result);
         assertEquals(list.get(index), elementToAdd);
+    }
+
+    @Test
+    public void testContains() {
+        String[] expectedStrings = {"Hello", "World", "!", " " };
+        LinkedList<String> list = createList(expectedStrings);
+
+        for (int i = 0; i < list.size(); i++) {
+            assertTrue(list.contains(expectedStrings[i]));
+        }
     }
 }

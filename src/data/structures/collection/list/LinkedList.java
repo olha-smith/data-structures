@@ -2,7 +2,9 @@ package data.structures.collection.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public class LinkedList<T> extends AbstractList<T> {
+public class LinkedList<T> implements List<T> {
+
+    private int size = 0;
 
     private static class Node<T> {
         T data;
@@ -19,46 +21,67 @@ public class LinkedList<T> extends AbstractList<T> {
     private Node<T> head;
     private Node<T> tail;
 
+    public int size() { return this.size; }
+
+    public boolean isEmpty() { return this.size == 0; }
+
+    @Override
+    public boolean contains(T data) {
+        return searchNode(data) != null;
+    }
+
+    protected boolean isOutOfBounds(int index) {
+        return index < 0 || index >= this.size;
+    }
+
     @Override
     public boolean add(T e) {
+        Node<T> newNode = new Node<>(e, null, null);
+
         if (isEmpty()) {
-            Node<T> newNode = new Node<T>(e, null, null);
             this.head = newNode;
-            this.tail = newNode;
         } else {
             Node<T> lastNode = this.tail;
-            Node<T> newNode = new Node<T>(e, null, lastNode);
-            this.tail = newNode;
+            newNode.prev = lastNode;
             lastNode.next = newNode;
         }
+
+        this.tail = newNode;
         ++this.size;
 
         return true;
     }
 
-    //dont work with empty list
-    // dont work with adding to list.size index
+    @Override
     public boolean add(int index, T e) throws IndexOutOfBoundsException {
-        if (isOutOfBounds(index)) {
+        if (index > this.size) {
             throw new IndexOutOfBoundsException();
         }
-
         Node<T> newNode = new Node<>(e, null, null);
-        Node<T> currentNode = this.searchNode(index);
 
-        if (index == 0) {
-            newNode.next = currentNode;
-            currentNode.prev = newNode;
+        if (this.isEmpty()) {
             this.head = newNode;
+            this.tail = newNode;
+        } else if (index == this.size) {
+            Node<T> lastNode = this.tail;
+            this.tail = newNode;
+            newNode.prev = lastNode;
+            lastNode.next = newNode;
+        } else if (index == 0) {
+            Node<T> firstNode = this.head;
+            this.head = newNode;
+            newNode.next = firstNode;
+            firstNode.prev = newNode;
         } else {
+            Node<T> currentNode = searchNode(index);
             Node<T> prevNode = currentNode.prev;
-            prevNode.next = newNode;
-            currentNode.prev = newNode;
+
             newNode.prev = prevNode;
             newNode.next = currentNode;
+            prevNode.next = newNode;
+            currentNode.prev = newNode;
         }
-        ++this.size;
-
+        ++size;
         return true;
     }
 
@@ -111,10 +134,24 @@ public class LinkedList<T> extends AbstractList<T> {
 
     private Node<T> searchNode(int index) {
         Node<T> currentNode = this.head;
+
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;
         }
 
         return currentNode;
+    }
+
+    private Node<T> searchNode(T data) {
+        Node<T> currentNode = this.head;
+
+        for (int i = 0; i < this.size; i++) {
+            if (currentNode.data == data) {
+                return currentNode;
+            }
+            currentNode = currentNode.next;
+        }
+
+        return null;
     }
 }

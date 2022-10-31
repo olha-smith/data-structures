@@ -1,12 +1,9 @@
 package data.structures.collection.list;
 
+import data.structures.collection.Collection;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-public interface List<T> {
-
-    int size();
-
-    boolean isEmpty();
+public interface List<T> extends Collection<T> {
 
     boolean add(T e);
 
