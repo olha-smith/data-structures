@@ -1,16 +1,15 @@
-package data.structures.graph.algorithms;
+package data.structures.traversable.algorithms;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.traversable.graph.EdgeType;
 import data.structures.traversable.graph.Vertex;
 import data.structures.traversable.graph.WeightGraph;
-
-import data.structures.traversable.algorithms.GraphTraverser;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GraphTraverserTest {
 

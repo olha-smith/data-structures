@@ -1,6 +1,5 @@
-package data.structures.queue;
+package data.structures.collection;
 
-import data.structures.collection.Deque;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

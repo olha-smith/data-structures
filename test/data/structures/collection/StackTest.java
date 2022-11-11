@@ -1,6 +1,5 @@
-package data.structures.queue;
+package data.structures.collection;
 
-import data.structures.collection.Stack;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import org.junit.jupiter.api.Test;
 
