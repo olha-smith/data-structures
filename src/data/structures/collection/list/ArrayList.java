@@ -2,6 +2,7 @@ package data.structures.collection.list;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 
+//FIXME one == two -> one.equals(two)
 public class ArrayList<T> implements List<T> {
     static final int INITIAL_CAPACITY = 5;
     static final float LOAD_FACTOR = 0.6f;
@@ -86,6 +87,17 @@ public class ArrayList<T> implements List<T> {
             newArray[j] = this.array[j];
         }
         this.array = newArray;
+    }
+
+    @Override
+    public int indexOf(T data) {
+        for (int i = 0; i < this.size; i++) {
+            if (this.array[i].equals(data)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override

@@ -111,6 +111,21 @@ public class LinkedList<T> implements List<T> {
     }
 
     @Override
+    public int indexOf(T data) {
+        Node<T> currentNode = head;
+        int i = 0;
+        while (currentNode != null) {
+            if (currentNode.data.equals(data)) {
+                return i;
+            }
+            currentNode = currentNode.next;
+            ++i;
+        }
+
+        return -1;
+    }
+
+    @Override
     public T get(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
             throw new IndexOutOfBoundsException();

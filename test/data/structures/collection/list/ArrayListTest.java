@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import static data.structures.collection.list.ArrayList.*;
 import static data.structures.utils.Builders.arrayOfNumbers;
-import static data.structures.utils.Builders.buildList;
+import static data.structures.utils.Builders.buildArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
@@ -27,7 +27,7 @@ class ArrayListTest {
 
     @Test
     void Add_WhenNotEmpty_ElementShouldBeAdded() throws IndexOutOfBoundsException {
-        ArrayList<String> list = buildList("Hello");
+        ArrayList<String> list = buildArrayList("Hello");
         String expected = "World";
 
         list.add(expected);
@@ -39,7 +39,7 @@ class ArrayListTest {
     @ValueSource(ints = {0, 1, 2, 3, INITIAL_CAPACITY, 7, 10, 12, 15, 17, 19, 99, 1400})
     void Add_WhenInternalArrayIsFull_ShouldIncreaseCapacity(int size) {
         Integer[] values = arrayOfNumbers(size);
-        ArrayList<Integer> list = buildList(values);
+        ArrayList<Integer> list = buildArrayList(values);
         int currentCapacity = list.getCapacity();
         int nextIncreaseSize = (int) Math.ceil(LOAD_FACTOR * currentCapacity) + 1;
         int numberOfElemToAdd = nextIncreaseSize - size + 1;
@@ -50,10 +50,10 @@ class ArrayListTest {
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Add_WithIndex_ElementShouldBeAddedByRightIndex(int index) throws IndexOutOfBoundsException {
         Integer[] values = arrayOfNumbers(index + 1);
-        ArrayList<Integer> list = buildList(values);
+        ArrayList<Integer> list = buildArrayList(values);
         Integer expected = 12;
 
         list.add(index, expected);
@@ -65,7 +65,7 @@ class ArrayListTest {
     @Test
     void Contains_WhenValueInList_ShouldReturnTrue() {
         Integer expected = 5;
-        ArrayList<Integer> list = buildList(1, 2, 3, expected, 10);
+        ArrayList<Integer> list = buildArrayList(1, 2, 3, expected, 10);
 
         assertTrue(list.contains(expected));
     }
@@ -73,32 +73,31 @@ class ArrayListTest {
     @Test
     void Contains_WhenValueNotInList_ShouldReturnFalse() {
         Integer expected = 5;
-        ArrayList<Integer> list = buildList(1, 2, 3, 10);
+        ArrayList<Integer> list = buildArrayList(1, 2, 3, 10);
 
         assertFalse(list.contains(expected));
     }
 
     @Test
     void Contains_WhenEmptyListIsContainsNull_ShouldReturnFalse() {
-        ArrayList<Integer> list = buildList();
+        ArrayList<Integer> list = buildArrayList();
 
         assertFalse(list.contains(null));
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Size_ShouldBeEqualsNumberOfElements(int size) {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(size));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(size));
 
         assertEquals(size, list.size());
     }
 
-
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Remove_WhenNotEmpty_ShouldRemoveElementByIndex(int index) throws IndexOutOfBoundsException {
         Integer[] values = arrayOfNumbers(index + 1);
-        ArrayList<Integer> list = buildList(values);
+        ArrayList<Integer> list = buildArrayList(values);
         Integer valueToRemove = list.get(index);
 
         assertEquals(valueToRemove, list.remove(index));
@@ -107,33 +106,33 @@ class ArrayListTest {
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Remove_WhenIndexOutOfBounds_ShouldThrowException(int index) {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(index));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(index));
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(index));
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Add_WhenIndexOutOfBounds_ShouldThrowException(int index) {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(index));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(index));
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.add(index + 1, index));
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Get_WhenIndexOutOfBounds_ShouldThrowException(int index) {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(index));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(index));
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(index));
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {1, 2, 10, 2700})
+    @ValueSource(ints = {1, 2, 10, 2700})
     void Set_WhenNotEmpty_ShouldReplaceElementAndReturnReplacedElement(int index) throws IndexOutOfBoundsException {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(index + 1));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(index + 1));
         Integer newElement = 15;
 
         assertEquals(list.get(index), list.set(index, newElement));
@@ -141,12 +140,28 @@ class ArrayListTest {
     }
 
     @ParameterizedTest
-    @ValueSource (ints = {0, 1, 2, 10, 2700})
+    @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Set_WhenEmpty_ShouldThrowException(int index) {
-        ArrayList<Integer> list = buildList(arrayOfNumbers(index));
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(index));
         Integer newElement = 15;
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.set(index, newElement));
+    }
+
+    @Test
+    void IndexOf_WhenContainsValue_ShouldReturnIndex() {
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(10));
+        Integer valueToFind = 5;
+
+        assertEquals(5, list.indexOf(valueToFind));
+    }
+
+    @Test
+    void IndexOf_WhenNotContainsValue_ShouldReturnMinusOne() {
+        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(10));
+        Integer valueToFind = 15;
+
+        assertEquals(-1, list.indexOf(valueToFind));
     }
 
     private <T> void append(List<T> list, T value, int n) {
