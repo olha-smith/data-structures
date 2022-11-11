@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.Arrays;
 
 import static data.structures.collection.list.ArrayList.*;
+import static data.structures.utils.Builders.arrayOfNumbers;
+import static data.structures.utils.Builders.buildList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
@@ -145,27 +147,6 @@ class ArrayListTest {
         Integer newElement = 15;
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.set(index, newElement));
-    }
-
-    @SafeVarargs
-    private <T> ArrayList<T> buildList(T... values) {
-        ArrayList<T> list = new ArrayList<>();
-
-        for (T value : values) {
-            list.add(value);
-        }
-
-        return list;
-    }
-
-    private Integer[] arrayOfNumbers(int size) {
-        Integer[] array = new Integer[size];
-
-        for (int i = 0; i < size; i++) {
-            array[i] = i;
-        }
-
-        return array;
     }
 
     private <T> void append(List<T> list, T value, int n) {
