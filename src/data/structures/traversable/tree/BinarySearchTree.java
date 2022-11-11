@@ -1,10 +1,12 @@
 package data.structures.traversable.tree;
 
+import java.util.Objects;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
-    private BinaryTreeNode rootNode;
+     BinaryTreeNode rootNode;
 
-    private class BinaryTreeNode implements Tree {
+     class BinaryTreeNode implements Tree {
         T data;
         BinaryTreeNode parent;
         BinaryTreeNode rightChild;
@@ -25,20 +27,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
 
         BinaryTreeNode currentNode = rootNode;
-        while (data != currentNode.data) {
-            Integer compareValue = data.compareTo(currentNode.data);
+        while (!currentNode.data.equals(data)) {
+            int compareValue = data.compareTo(currentNode.data);
 
             if (compareValue < 0) {
                 if (currentNode.leftChild != null) {
                     currentNode = currentNode.leftChild;
-                    continue;
                 } else {
                     currentNode.leftChild = new BinaryTreeNode(data, currentNode,null, null);
                     return true;
                 }
-            }
-
-            if (compareValue > 0) {
+            } else {
                 if (currentNode.rightChild != null) {
                     currentNode = currentNode.rightChild;
                 } else {
@@ -52,36 +51,83 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public boolean remove(T data) {
-        BinaryTreeNode removableNode = search(data);
+         BinaryTreeNode nodeToRemove = search(data);
+         if (nodeToRemove == null) {
+             return false;
+         }
 
-        if (removableNode != null) {
-            if (removableNode == rootNode) {
-                rootNode = null;
-                return true;
-            }
-
-            if (removableNode.parent.rightChild == removableNode) {
-                removableNode.parent.rightChild = null;
+         return remove(nodeToRemove);
+    }
+    
+    private boolean removeLeaf(BinaryTreeNode leaf) {
+        if (leaf == rootNode) {
+            rootNode = null;
+        } else {
+            if (leaf.data.compareTo(leaf.parent.data) > 0) {
+                leaf.parent.rightChild = null;
             } else {
-                removableNode.parent.leftChild = null;
+                leaf.parent.leftChild = null;
             }
-
-            removableNode.parent = null;
-            return true;
         }
 
-        return false;
+        return true;
+    }
+
+    private boolean removeNodeWithOnlyChild(BinaryTreeNode node) {
+        BinaryTreeNode child = Objects.requireNonNullElseGet(node.rightChild, () -> node.leftChild);
+
+        if (node == rootNode) {
+            rootNode = child;
+            child.parent = null;
+        } else {
+            if (node.data.compareTo(node.parent.data) > 0) {
+                node.parent.rightChild = child;
+            } else {
+                node.parent.leftChild = child;
+            }
+            child.parent = node.parent;
+        }
+
+        return true;
+    }
+
+    private boolean removeNodeWithBothChildren(BinaryTreeNode node) {
+        BinaryTreeNode targetChild = node.rightChild;
+
+        while (targetChild.leftChild != null) {
+            targetChild = targetChild.leftChild;
+        }
+
+        T data = targetChild.data;
+        remove(targetChild);
+        node.data = data;
+
+        return true;
+    }
+
+    private boolean remove(BinaryTreeNode node) {
+        if (node.rightChild == null && node.leftChild == null) {
+            return removeLeaf(node);
+        } else if (node.rightChild != null && node.leftChild != null) {
+            return removeNodeWithBothChildren(node);
+        } else {
+            return removeNodeWithOnlyChild(node);
+        }
     }
 
     public boolean contains(T data) {
         return (search(data) != null);
     }
 
-    private BinaryTreeNode search(T data) {
+    BinaryTreeNode search(T data) {
+        if (isEmpty()) {
+            return null;
+        }
+
         BinaryTreeNode currentNode = rootNode;
 
-        while (currentNode.data != data) {
-            Integer compareValue = data.compareTo(currentNode.data);
+        while (!currentNode.data.equals(data)) {
+            int compareValue = data.compareTo(currentNode.data);
             BinaryTreeNode targetChild;
 
             if (compareValue < 0) {
@@ -90,11 +136,11 @@ public class BinarySearchTree<T extends Comparable<T>> {
                 targetChild = currentNode.rightChild;
             }
 
-            if (targetChild != null) {
-                currentNode = targetChild;
-            } else {
+            if (targetChild == null) {
                 return null;
             }
+
+            currentNode = targetChild;
         }
 
         return currentNode;
