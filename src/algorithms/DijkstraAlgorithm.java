@@ -1,10 +1,10 @@
-package data.structures.traversable.algorithms;
+package algorithms;
 
+import data.structures.collection.Queue;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.traversable.graph.Vertex;
 import data.structures.traversable.graph.WeightedEdge;
 import data.structures.traversable.graph.WeightedGraph;
-import data.structures.collection.Queue;
 
 import java.util.ArrayList;
 import java.util.HashMap;

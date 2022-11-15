@@ -1,5 +1,6 @@
 package data.structures.traversable.algorithms;
 
+import algorithms.DijkstraAlgorithm;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.traversable.graph.EdgeType;
 import data.structures.traversable.graph.Vertex;
