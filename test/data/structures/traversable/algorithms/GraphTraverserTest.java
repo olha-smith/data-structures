@@ -4,7 +4,7 @@ import algorithms.GraphTraverser;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.traversable.graph.EdgeType;
 import data.structures.traversable.graph.Vertex;
-import data.structures.traversable.graph.WeightGraph;
+import data.structures.traversable.graph.WeightedGraphImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -14,14 +14,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GraphTraverserTest {
 
-    private GraphTraverser<Integer> buildTraverser(WeightGraph<Integer> graph) {
+    private GraphTraverser<Integer> buildTraverser(WeightedGraphImpl<Integer> graph) {
         return new GraphTraverser<>(graph);
     }
 
     private Vertex<Integer> startVertex;
 
-    private WeightGraph<Integer> buildGraph() {
-        WeightGraph<Integer> graph = new WeightGraph<>();
+    private WeightedGraphImpl<Integer> buildGraph() {
+        WeightedGraphImpl<Integer> graph = new WeightedGraphImpl<>();
         Double[] testWeights = {0.0, 1.1, 2.2, 3.3};
 
         Vertex<Integer> vertex1 = graph.createVertex(1);
@@ -41,7 +41,7 @@ class GraphTraverserTest {
 
     @Test
     void testBreadthFirstSearch() throws IndexOutOfBoundsException {
-        WeightGraph<Integer> graph = buildGraph();
+        WeightedGraphImpl<Integer> graph = buildGraph();
         List<Integer> expectedList = Arrays.asList(1, 2, 3, 4, 5);
 
         GraphTraverser<Integer> traverser = buildTraverser(graph);
@@ -50,7 +50,7 @@ class GraphTraverserTest {
 
     @Test
     void testDepthFirstSearch() throws IndexOutOfBoundsException {
-        WeightGraph<Integer> graph = buildGraph();
+        WeightedGraphImpl<Integer> graph = buildGraph();
         List<Integer> expectedList = Arrays.asList(1, 2, 4, 5, 3);
 //todo remove builder for traverser, just use new GraphTraverser(graph) instead
         GraphTraverser<Integer> traverser = buildTraverser(graph);

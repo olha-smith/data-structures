@@ -4,7 +4,7 @@ package data.structures.traversable.graph;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class WeightGraph<T> implements WeightedGraph<T> {
+public class WeightedGraphImpl<T> implements WeightedGraph<T> {
 
     HashMap<Vertex<T>, ArrayList<WeightedEdge<T>>> map = new HashMap<>();
 

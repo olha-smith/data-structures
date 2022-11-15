@@ -4,7 +4,7 @@ import algorithms.DijkstraAlgorithm;
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.traversable.graph.EdgeType;
 import data.structures.traversable.graph.Vertex;
-import data.structures.traversable.graph.WeightGraph;
+import data.structures.traversable.graph.WeightedGraphImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,8 +13,8 @@ class DijkstraAlgorithmTest {
     private Vertex<String> source;
     private Vertex<String> destination;
 
-    private WeightGraph<String> buildGraph() {
-        WeightGraph<String> graph = new WeightGraph<>();
+    private WeightedGraphImpl<String> buildGraph() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         Double[] testWeights = {3.0, 1.0, 1.0, 3.0, 3.0, 4.0, 1.0, 4.0};
 
         Vertex<String> vertexA = graph.createVertex("A");
@@ -41,7 +41,7 @@ class DijkstraAlgorithmTest {
 
     @Test
     void findShortestPathTest() throws IndexOutOfBoundsException {
-        WeightGraph<String> graph = buildGraph();
+        WeightedGraphImpl<String> graph = buildGraph();
         Double expectedWeight = 6.0;
 
         DijkstraAlgorithm<String> pathfinder = new DijkstraAlgorithm<>(graph);

@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class  WeightGraphTest {
+class WeightedGraphImplTest {
 
     @Test
     void testCreateVertex() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString = "Hello";
 
         Vertex<String> vertex = graph.createVertex(testString);
@@ -21,7 +21,7 @@ class  WeightGraphTest {
 
     @Test
     void testEdgeType_when_UNDIRECTED() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
@@ -37,7 +37,7 @@ class  WeightGraphTest {
 
     @Test
     void testEdgeType_when_DIRECTED() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
@@ -53,7 +53,7 @@ class  WeightGraphTest {
 
     @Test
     void testGetEdges_when_noEdgesForVertex() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString = "Hello";
 
         Vertex<String> vertex = graph.createVertex(testString);
@@ -64,7 +64,7 @@ class  WeightGraphTest {
 
     @Test
     void testGetEdges_happyPath() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString = "Hello";
         String testString2 = ",";
         String testString3 = "World";
@@ -85,7 +85,7 @@ class  WeightGraphTest {
 
     @Test
     void testWeight() {
-        WeightedGraph<String> graph = new WeightGraph<>();
+        WeightedGraph<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
