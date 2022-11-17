@@ -1,50 +1,50 @@
 package data.structures.map;
 
-import data.structures.exceptions.IndexOutOfBoundsException;
-import data.structures.collection.list.LinkedList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class HashMapTest {
+class HashMapTest {
+
     @Test
-    public void putTest() throws IndexOutOfBoundsException {
-        HashMap<String, String> hashMap = new HashMap<>();
-        String testKey = "Nickname";
-        String testValue = "Mobster";
-
-        boolean result = hashMap.put(testKey, testValue);
-        assertTrue(result);
-
-        LinkedList<String> values = hashMap.get(testKey);
-
-        assertEquals(testValue, values.get(values.size() - 1));
+    void clear() {
     }
 
     @Test
-    public void removeValueTest() throws IndexOutOfBoundsException {
-        HashMap<String, String> hashMap = new HashMap<>();
-        String testKey = "Nickname";
-        String testValue1 = "Mobster";
-        String testValue2 = "Lobster";
-
-        hashMap.put(testKey, testValue1);
-        hashMap.put(testKey, testValue2);
-
-        assertEquals(testValue2, hashMap.removeValue(testKey, testValue2));
+    void containsKey() {
     }
 
     @Test
-    public void removePairTest() throws IndexOutOfBoundsException {
-        HashMap<String, String> hashMap = new HashMap<>();
-        String testKey = "Nickname";
-        String testValue = "Mobster";
+    void containsValue() {
+    }
 
-        hashMap.put(testKey, testValue);
-        hashMap.get(testKey);
-        assertNotNull(hashMap.get(testKey));
+    @Test
+    void get() {
+    }
 
-        hashMap.removePair(testKey);
-        assertNull(hashMap.get(testKey));
+    @Test
+    void put() {
+        HashMap<Integer, String> hashMap = new HashMap<>();
+
+        hashMap.put(1, "first");
+
+        assertTrue(hashMap.containsKey(1));
+        assertTrue(hashMap.containsValue("first"));
+    }
+
+    @Test
+    void remove() {
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        hashMap.put(1, "first");
+
+        hashMap.remove(1);
+
+        assertFalse(hashMap.containsKey(1));
+        assertFalse(hashMap.containsValue("first"));
+    }
+
+    @Test
+    void values() {
     }
 }
