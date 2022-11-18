@@ -1,5 +1,6 @@
 package data.structures.collection.list;
 
+import data.structures.collection.Iterator;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
 //FIXME one == two -> one.equals(two)
@@ -142,5 +143,34 @@ public class ArrayList<T> implements List<T> {
 
     int getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayListIterator();
+    }
+
+    class ArrayListIterator implements Iterator<T> {
+
+        private int nextElement = 0;
+
+        @Override
+        public boolean hasNext() {
+            return nextElement < size;
+        }
+
+        @Override
+        public T next() {
+            if (this.hasNext()) {
+                try {
+                    ++nextElement;
+                    return ArrayList.this.get(nextElement);
+                } catch (IndexOutOfBoundsException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            return null;
+        }
     }
 }

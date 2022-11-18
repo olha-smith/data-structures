@@ -1,5 +1,6 @@
 package data.structures.collection.set;
 
+import data.structures.exceptions.UnsupportedOperationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -7,6 +8,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TreeSetTest {
+
+    @Test
+    void Iterator_WhenCall_ShouldThrowException() {
+        TreeSet<Integer> treeSet = new TreeSet<>();
+
+        String errorMessage = assertThrows(UnsupportedOperationException.class, treeSet::iterator).getMessage();
+        assertEquals(UnsupportedOperationException.MESSAGE, errorMessage);
+    }
 
     @Test
     void Add_WhenEmpty_ShouldAddElement() {

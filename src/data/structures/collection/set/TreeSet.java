@@ -1,5 +1,7 @@
 package data.structures.collection.set;
 
+import data.structures.collection.Iterator;
+import data.structures.exceptions.UnsupportedOperationException;
 import data.structures.traversable.tree.BinarySearchTree;
 
 public class TreeSet<T extends Comparable<T>> implements Set<T> {
@@ -51,5 +53,10 @@ public class TreeSet<T extends Comparable<T>> implements Set<T> {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        throw new UnsupportedOperationException();
     }
 }

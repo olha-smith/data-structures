@@ -1,5 +1,6 @@
 package data.structures.collection.list;
 
+import data.structures.collection.Iterator;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
 public class LinkedList<T> implements List<T> {
@@ -168,5 +169,34 @@ public class LinkedList<T> implements List<T> {
         }
 
         return null;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    class LinkedListIterator implements Iterator<T> {
+
+        private int nextElement = 0;
+
+        @Override
+        public boolean hasNext() {
+            return nextElement < size;
+        }
+
+        @Override
+        public T next() {
+            if (this.hasNext()) {
+                try {
+                    ++nextElement;
+                    return LinkedList.this.get(nextElement);
+                } catch (IndexOutOfBoundsException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            return null;
+        }
     }
 }
