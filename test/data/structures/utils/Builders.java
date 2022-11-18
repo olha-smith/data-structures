@@ -5,6 +5,7 @@ import data.structures.collection.list.LinkedList;
 
 public class Builders {
 
+    @SafeVarargs
     public static <T> ArrayList<T> buildArrayList(T... values) {
         ArrayList<T> list = new ArrayList<>();
 
@@ -35,15 +36,4 @@ public class Builders {
 
         return list;
     }
-
-    public static <T> LinkedList<T> buildLinkedList(T[] values) {
-        LinkedList<T> list = new LinkedList<>();
-
-        for (int i = 0; i < values.length; i++) {
-            list.add(values[i]);
-        }
-
-        return list;
-    }
-
 }

@@ -22,6 +22,17 @@ public class LinkedList<T> implements List<T> {
     private Node<T> head;
     private Node<T> tail;
 
+    @SafeVarargs
+    public static <T> LinkedList<T> of(T... values) {
+        LinkedList<T> list = new LinkedList<>();
+
+        for (T value : values) {
+            list.add(value);
+        }
+
+        return list;
+    }
+
     public int size() { return this.size; }
 
     public boolean isEmpty() { return this.size == 0; }
@@ -55,7 +66,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean add(int index, T e) throws IndexOutOfBoundsException {
-        if (index > this.size) {
+        if (index > this.size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
         Node<T> newNode = new Node<>(e, null, null);
