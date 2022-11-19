@@ -14,6 +14,17 @@ public class ArrayList<T> implements List<T> {
 
     protected int size = 0;
 
+    @SafeVarargs
+    public static <T> ArrayList<T> of(T... values) {
+        ArrayList<T> list = new ArrayList<>();
+
+        for (T value : values) {
+            list.add(value);
+        }
+
+        return list;
+    }
+
     @Override
     public int size() { return this.size; }
 

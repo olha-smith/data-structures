@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static data.structures.utils.Builders.*;
+import static data.structures.utils.Builders.buildLinkedList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest {
@@ -127,7 +127,7 @@ public class LinkedListTest {
 
     @Test
     void IndexOf_WhenContainsValue_ShouldReturnIndex() {
-        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(10));
+        LinkedList<Integer> list = LinkedList.of( 0, 1, 2, 3, 4, 5);
         Integer valueToFind = 5;
 
         assertEquals(5, list.indexOf(valueToFind));
@@ -135,7 +135,7 @@ public class LinkedListTest {
 
     @Test
     void IndexOf_WhenNotContainsValue_ShouldReturnMinusOne() {
-        ArrayList<Integer> list = buildArrayList(arrayOfNumbers(10));
+        LinkedList<Integer> list = LinkedList.of(0, 1, 2, 3, 4, 5);
         Integer valueToFind = 15;
 
         assertEquals(-1, list.indexOf(valueToFind));

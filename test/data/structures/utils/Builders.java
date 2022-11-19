@@ -1,20 +1,8 @@
 package data.structures.utils;
 
-import data.structures.collection.list.ArrayList;
 import data.structures.collection.list.LinkedList;
 
 public class Builders {
-
-    @SafeVarargs
-    public static <T> ArrayList<T> buildArrayList(T... values) {
-        ArrayList<T> list = new ArrayList<>();
-
-        for (T value : values) {
-            list.add(value);
-        }
-
-        return list;
-    }
 
     public static Integer[] arrayOfNumbers(int size) {
         Integer[] array = new Integer[size];
