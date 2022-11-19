@@ -7,6 +7,17 @@ public class Deque<T> {
 
     private LinkedList<T> list = new LinkedList<>();
 
+    @SafeVarargs
+    public static <T> Deque<T> of(T... values) {
+        Deque<T> deque = new Deque<>();
+
+        for (T value : values) {
+            deque.insertLast(value);
+        }
+
+        return deque;
+    }
+
     public int size() {
         return list.size();
     }
@@ -15,14 +26,14 @@ public class Deque<T> {
         return list.isEmpty();
     }
 
-    public boolean insertLast(T e) {
+    public T insertLast(T e) {
         list.add(e);
-        return true;
+        return e;
     }
 
-    public boolean insertFront(T e) throws IndexOutOfBoundsException {
+    public T insertFront(T e) throws IndexOutOfBoundsException {
         list.add(0, e);
-        return true;
+        return e;
     }
 
     public T deleteLast() throws IndexOutOfBoundsException {

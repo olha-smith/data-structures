@@ -1,6 +1,7 @@
 package data.structures.collection;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
+import data.structures.utils.Builders;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -8,67 +9,90 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DequeTest {
-    @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 5, 10})
-    void testInsertLast(int dequeSize) throws IndexOutOfBoundsException {
-        Deque<String> deque = new Deque<>();
-        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
-
-        for (int i = 0; i < dequeSize; i++) {
-            deque.insertLast(testElements[i]);
-            assertEquals(testElements[i], deque.getRear());
-        }
-    }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 5, 10})
-    void testInsertFront(int dequeSize) throws IndexOutOfBoundsException {
-        Deque<String> deque = new Deque<>();
-        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
-        deque.insertLast("");
+    @ValueSource(ints = {1, 2, 30, 2700})
+    void InsertLast_WhenNotEmpty_ShouldAddElementToTail(int elementToAdd) throws IndexOutOfBoundsException {
+        Deque<Integer> deque = Deque.of(0);
 
-        for (int i = 0; i < dequeSize; i++) {
-            deque.insertFront(testElements[i]);
-            assertEquals(testElements[i], deque.getFront());
-            assertEquals(i + 1, deque.size() - 1);
+        deque.insertLast(elementToAdd);
+
+        assertEquals(deque.getRear(), elementToAdd);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 30, 2700})
+    void InsertFront_WhenNotEmpty_ShouldAddElementToFront(int elementToAdd) throws IndexOutOfBoundsException {
+        Deque<Integer> deque = Deque.of(0);
+
+        deque.insertFront(elementToAdd);
+
+        assertEquals(deque.getFront(), elementToAdd);
+    }
+
+    @Test
+    void DeleteLast_WhenNotEmpty_ShouldDeleteLastElement() throws IndexOutOfBoundsException {
+        Deque<Integer> deque = Deque.of(0, 1, 30, 2700);
+
+        while (deque.size() > 0) {
+            assertEquals(deque.getRear(), deque.deleteLast());
         }
     }
 
     @Test
-    void testDeleteLast() throws IndexOutOfBoundsException {
-        Deque<String> deque = new Deque<>();
-        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+    void DeleteFront_WhenNotEmpty_ShouldDeleteFirstElement() throws IndexOutOfBoundsException {
+        Deque<Integer> deque = Deque.of(0, 1, 30, 2700);
 
-        for (int i = 0; i < testElements.length; i++) {
-            deque.insertLast(testElements[i]);
-        }
-
-        for (int i = testElements.length - 1; i >= 0; i--) {
-            assertEquals(testElements[i], deque.deleteLast());
+        while (deque.size() > 0) {
+            assertEquals(deque.getFront(), deque.deleteFront());
         }
     }
 
     @Test
-    void testDeleteFront() throws IndexOutOfBoundsException {
-        Deque<String> deque = new Deque<>();
-        String[] testElements = {"Hello", "," ," Sweety", "!", " Happy", " Learning", " Programming", " To", " You", " :3"};
+    void GetFront_WhenNotEmpty_ShouldReturnFirstElement() throws IndexOutOfBoundsException {
+        String firstElement = "Hello";
+        Deque<String> deque = Deque.of(firstElement, "World", "!", "");
 
-        for (int i = 0; i < testElements.length; i++) {
-            deque.insertLast(testElements[i]);
-        }
-
-        for (int i = 0; deque.size() > 0; i++) {
-            assertEquals(testElements[i], deque.deleteFront());
-        }
+        assertEquals(firstElement, deque.getFront());
     }
 
     @Test
-    void testIsEmpty() {
+    void GetRear_WhenNotEmpty_ShouldReturnLastElement() throws IndexOutOfBoundsException {
+        String lastElement = "last";
+        Deque<String> deque = Deque.of("Hello", "World", "!", "", lastElement);
+
+        assertEquals(lastElement, deque.getRear());
+    }
+
+    @Test
+    void Size_WhenAddElement_ShouldIncreaseSize() {
+        int expectedSize = 5;
+        Deque<Integer> deque = Deque.of(Builders.arrayOfNumbers(5));
+
+        assertEquals(expectedSize, deque.size());
+    }
+
+    @Test
+    void Size_WhenRemoveElement_ShouldDecreaseSize() throws IndexOutOfBoundsException {
+        int expectedSize = 5;
+        Deque<Integer> deque = Deque.of(Builders.arrayOfNumbers(5));
+
+        deque.deleteLast();
+
+        assertEquals(expectedSize - 1, deque.size());
+    }
+
+    @Test
+    void IsEmpty_WhenEmpty_ShouldReturnTrue() {
         Deque<String> deque = new Deque<>();
-        String testString = "Hello";
+
         assertTrue(deque.isEmpty());
+    }
 
-        deque.insertLast(testString);
+    @Test
+    void IsEmpty_WhenNotEmpty_ShouldReturnFalse() {
+        Deque<String> deque = Deque.of("Not Empty!");
+
         assertFalse(deque.isEmpty());
     }
 }
