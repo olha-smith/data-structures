@@ -31,7 +31,7 @@ class QueueTest {
     void Dequeue_WhenNotEmpty_ShouldRemoveFirstElement() throws IndexOutOfBoundsException {
         Queue<String> queue = Queue.of("Hello", "World", "!", "");
 
-        for (int i = queue.size(); i > 0; i--) {
+        while (queue.size() > 0) {
             assertEquals(queue.front(), queue.dequeue());
         }
     }
@@ -63,7 +63,7 @@ class QueueTest {
     @Test
     void Size_WhenRemoveElement_ShouldDecreaseSize() throws IndexOutOfBoundsException {
         int expectedSize = 5;
-        Queue<Integer> queue = Queue.of(Builders.arrayOfNumbers(5));
+        Queue<Integer> queue = Queue.of(Builders.arrayOfNumbers(expectedSize));
 
         queue.dequeue();
 

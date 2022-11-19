@@ -7,6 +7,17 @@ public class Stack<T> {
 
     private LinkedList<T> list = new LinkedList<>();
 
+    @SafeVarargs
+    public static <T> Stack<T> of(T... values) {
+        Stack<T> stack = new Stack<>();
+
+        for (T value : values) {
+            stack.push(value);
+        }
+
+        return stack;
+    }
+
     public int size() {
         return list.size();
     }
