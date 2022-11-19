@@ -7,6 +7,17 @@ public class Queue<T> {
 
     private LinkedList<T> list = new LinkedList<>();
 
+    @SafeVarargs
+    public static <T> Queue<T> of(T... values) {
+        Queue<T> queue = new Queue<>();
+
+        for (T value : values) {
+            queue.enqueue(value);
+        }
+
+        return queue;
+    }
+
     public T enqueue(T e) {
         list.add(e);
         return e;

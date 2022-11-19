@@ -1,84 +1,86 @@
 package data.structures.collection;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
+import data.structures.utils.Builders;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
     @Test
-    void testEnqueue_whenEmpty() {
+    void Enqueue_WhenEmpty_ShouldAddElement() {
         Queue<String> queue = new Queue<>();
-        String testString = "Hello";
+        String elementToAdd = "Hello";
 
-        String result = queue.enqueue(testString);
+        assertEquals(elementToAdd, queue.enqueue(elementToAdd));
+    }
 
-        assertEquals(testString, result);
+    @ParameterizedTest
+    @ValueSource(strings = {"World", "!", ""})
+    void Enqueue_WhenNotEmpty_ShouldAddElementToTail(String elementToAdd) throws IndexOutOfBoundsException {
+        Queue<String> queue = Queue.of("Hello");
+
+        queue.enqueue(elementToAdd);
+
+        assertEquals(elementToAdd, queue.rear());
     }
 
     @Test
-    void testDequeue() throws IndexOutOfBoundsException {
-        Queue<String> queue = new Queue<>();
-        String testString1 = "Hello";
-        String testString2 = "World";
+    void Dequeue_WhenNotEmpty_ShouldRemoveFirstElement() throws IndexOutOfBoundsException {
+        Queue<String> queue = Queue.of("Hello", "World", "!", "");
 
-        queue.enqueue(testString1);
-        queue.enqueue(testString2);
-        String result1 = queue.dequeue();
-        String result2 = queue.dequeue();
-
-        assertEquals(testString1, result1);
-        assertEquals(testString2, result2);
+        for (int i = queue.size(); i > 0; i--) {
+            assertEquals(queue.front(), queue.dequeue());
+        }
     }
 
     @Test
-    void testFront() throws IndexOutOfBoundsException {
-        Queue<String> queue = new Queue<>();
-        String testString1 = "Hello";
-        String testString2 = "World";
+    void Front_WhenNotEmpty_ShouldReturnFirstElement() throws IndexOutOfBoundsException {
+        String firstElement = "Hello";
+        Queue<String> queue = Queue.of(firstElement, "World", "!", "");
 
-        queue.enqueue(testString1);
-        queue.enqueue(testString2);
-
-        assertEquals(testString1, queue.front());
-        queue.dequeue();
+        assertEquals(firstElement, queue.front());
     }
 
     @Test
-    void testRear() throws IndexOutOfBoundsException {
-        Queue<String> queue = new Queue<>();
-        String testString1 = "Hello";
-        String testString2 = "World";
+    void Rear_WhenNotEmpty_ShouldReturnLastElement() throws IndexOutOfBoundsException {
+        String lastElement = "last";
+        Queue<String> queue = Queue.of("Hello", "World", "!", lastElement);
 
-        queue.enqueue(testString1);
-        queue.enqueue(testString2);
-
-        assertEquals(testString2, queue.rear());
-        assertEquals(testString1, queue.dequeue());
-        assertEquals(testString2, queue.rear());
+        assertEquals(lastElement, queue.rear());
     }
 
     @Test
-    void testSize() {
-        Queue<String> queue = new Queue<>();
-        String testString1 = "Hello";
-        String testString2 = "World";
-        int expectedSize = 2;
-
-        queue.enqueue(testString1);
-        queue.enqueue(testString2);
+    void Size_WhenAddElement_ShouldIncreaseSize() {
+        int expectedSize = 5;
+        Queue<Integer> queue = Queue.of(Builders.arrayOfNumbers(5));
 
         assertEquals(expectedSize, queue.size());
     }
 
     @Test
-    void testIsEmpty() {
+    void Size_WhenRemoveElement_ShouldDecreaseSize() throws IndexOutOfBoundsException {
+        int expectedSize = 5;
+        Queue<Integer> queue = Queue.of(Builders.arrayOfNumbers(5));
+
+        queue.dequeue();
+
+        assertEquals(expectedSize - 1, queue.size());
+    }
+
+    @Test
+    void IsEmpty_WhenEmpty_ShouldReturnTrue() {
         Queue<String> queue = new Queue<>();
-        String testString1 = "Hello";
 
         assertTrue(queue.isEmpty());
+    }
 
-        queue.enqueue(testString1);
+    @Test
+    void IsEmpty_WhenNotEmpty_ShouldReturnFalse() {
+        Queue<String> queue = Queue.of("Not Empty!");
+
         assertFalse(queue.isEmpty());
     }
 }
