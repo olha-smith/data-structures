@@ -12,10 +12,22 @@ public class HashMap<K, V> implements Map<K, V> {
     @SuppressWarnings("unchecked")
     LinkedList<Pair<K, V>>[] buckets = (LinkedList<Pair<K, V>>[]) new LinkedList[INITIAL_CAPACITY];
 
+    @SafeVarargs
+    public static <K, V> HashMap<K, V> of(HashMap.Pair<K, V>... pairs) {
+        HashMap<K, V> hashMap = new HashMap<>();
+
+        for (Pair<K, V> pair : pairs) {
+            hashMap.put(pair.key, pair.value);
+        }
+
+        return hashMap;
+    }
+
     @Override
     public boolean clear() {
         for (int i = 0; i < buckets.length; i++) {
             buckets[i] = null;
+            size = 0;
         }
         return true;
     }
@@ -89,7 +101,8 @@ public class HashMap<K, V> implements Map<K, V> {
         } else {
             buckets[bucketIndex] = new LinkedList<>();
         }
-        buckets[bucketIndex].add(new Pair<>(key, value));
+        buckets[bucketIndex].add(Pair.of(key, value));
+        size++;
 
         return true;
     }
@@ -102,6 +115,7 @@ public class HashMap<K, V> implements Map<K, V> {
             try {
                 if (bucket.get(i).key.equals(key)) {
                     bucket.remove(i);
+                    size--;
                     return true;
                 }
             } catch (IndexOutOfBoundsException e) {
@@ -121,7 +135,7 @@ public class HashMap<K, V> implements Map<K, V> {
         LinkedList<V> list = new LinkedList<>();
 
         for (LinkedList<Pair<K, V>> bucket : buckets) {
-            for (int i = 0; i < bucket.size(); i++) {
+            for (int i = 0; bucket != null && i < bucket.size(); i++) {
                 try {
                     list.add(bucket.get(i).value);
                 } catch (IndexOutOfBoundsException e) {
@@ -137,9 +151,13 @@ public class HashMap<K, V> implements Map<K, V> {
         K key;
         V value;
 
-        Pair(K key, V value) {
+        private Pair(K key, V value) {
             this.key = key;
             this.value = value;
+        }
+
+        public static <K, V> Pair<K, V> of(K key, V value) {
+            return new Pair<>(key, value);
         }
     }
 }
