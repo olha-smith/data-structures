@@ -37,14 +37,4 @@ class TreeTestUtils {
             return null;
         }
     }
-
-    static BinarySearchTree<Integer> buildTree(int... values) {
-        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-
-        for (int value: values) {
-            tree.add(value);
-        }
-
-        return tree;
-    }
 }

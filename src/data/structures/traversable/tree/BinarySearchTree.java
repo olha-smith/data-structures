@@ -20,6 +20,16 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
+    public static BinarySearchTree<Integer> of(int... values) {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+
+        for (int value: values) {
+            tree.add(value);
+        }
+
+        return tree;
+    }
+
     public boolean add(T data) {
         if (this.isEmpty()) {
             rootNode = new BinaryTreeNode(data, null,null, null);
