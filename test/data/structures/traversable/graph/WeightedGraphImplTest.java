@@ -11,17 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class WeightedGraphImplTest {
 
     @Test
-    void testCreateVertex() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
+    void CreateVertex_ShouldCreateVertexAndEmptyListOfEdges() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         String testString = "Hello";
 
         Vertex<String> vertex = graph.createVertex(testString);
         Assertions.assertEquals(testString, vertex.getData());
+        assertTrue(graph.getEdges(vertex).isEmpty());
     }
 
     @Test
-    void testEdgeType_when_UNDIRECTED() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
+    void Add_WhenSetEdgeTypeUNDIRECTED_ShouldCreateUndirectedEdge() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
@@ -36,8 +37,8 @@ class WeightedGraphImplTest {
     }
 
     @Test
-    void testEdgeType_when_DIRECTED() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
+    void Add_WhenSetEdgeTypeDIRECTED_ShouldCreateDirectedEdge() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
@@ -52,8 +53,8 @@ class WeightedGraphImplTest {
     }
 
     @Test
-    void testGetEdges_when_noEdgesForVertex() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
+    void GetEdges_WhenVertexHasNotEdges_ShouldReturnEmptyList() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         String testString = "Hello";
 
         Vertex<String> vertex = graph.createVertex(testString);
@@ -63,29 +64,27 @@ class WeightedGraphImplTest {
     }
 
     @Test
-    void testGetEdges_happyPath() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
-        String testString = "Hello";
-        String testString2 = ",";
-        String testString3 = "World";
+    void GetEdges_WhenVertexHasEdges_ShouldReturnEdgesOfVertex() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
+        String[] values = {"Hello", ",", "World"};
         Double[] testWeights = {2.0, 1.3, 3.5};
 
-        Vertex<String> vertex = graph.createVertex(testString);
-        Vertex<String> vertex2 = graph.createVertex(testString2);
-        Vertex<String> vertex3 = graph.createVertex(testString3);
+        Vertex<String> vertex0 = graph.createVertex(values[0]);
+        Vertex<String> vertex1 = graph.createVertex(values[1]);
+        Vertex<String> vertex2 = graph.createVertex(values[2]);
 
-        graph.add(EdgeType.UNDIRECTED, vertex, vertex2, testWeights[0]);
-        graph.add(EdgeType.UNDIRECTED, vertex, vertex3, testWeights[1]);
+        graph.add(EdgeType.UNDIRECTED, vertex0, vertex1, testWeights[0]);
+        graph.add(EdgeType.UNDIRECTED, vertex0, vertex2, testWeights[1]);
 
-        ArrayList<WeightedEdge<String>> edgeList = graph.getEdges(vertex);
+        ArrayList<WeightedEdge<String>> edgeList = graph.getEdges(vertex0);
 
-        assertEquals(vertex2, edgeList.get(0).to);
-        assertEquals(vertex3, edgeList.get(1).to);
+        assertEquals(vertex1, edgeList.get(0).to);
+        assertEquals(vertex2, edgeList.get(1).to);
     }
 
     @Test
-    void testWeight() {
-        WeightedGraph<String> graph = new WeightedGraphImpl<>();
+    void Weight_WhenHasTwoVertices_ShouldReturnWeight() {
+        WeightedGraphImpl<String> graph = new WeightedGraphImpl<>();
         String testString1 = "Hello";
         String testString2 = "World";
         Double testWeight = 2.0;
