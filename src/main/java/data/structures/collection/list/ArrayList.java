@@ -112,6 +112,13 @@ public class ArrayList<T> implements List<T> {
         return -1;
     }
 
+
+    @Override
+    public boolean remove(T e) {
+        //TODO implement
+        return false;
+    }
+
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {

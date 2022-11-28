@@ -5,8 +5,6 @@ import data.structures.exceptions.IndexOutOfBoundsException;
 
 public interface List<T> extends Collection<T> {
 
-    boolean add(T e);
-
     boolean add(int index, T e) throws IndexOutOfBoundsException;
 
     T remove(int index) throws IndexOutOfBoundsException;

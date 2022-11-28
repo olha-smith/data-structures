@@ -1,4 +1,4 @@
-package data.structures.collection;
+package data.structures.queue;
 
 import data.structures.exceptions.IndexOutOfBoundsException;
 import data.structures.utils.Builders;

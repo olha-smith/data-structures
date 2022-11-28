@@ -97,6 +97,13 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
+
+    @Override
+    public boolean remove(T e) {
+        //TODO Implement
+        return false;
+    }
+
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
         if (isOutOfBounds(index)) {
