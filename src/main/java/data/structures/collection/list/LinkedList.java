@@ -97,20 +97,7 @@ public class LinkedList<T> implements List<T> {
         return true;
     }
 
-
-    @Override
-    public boolean remove(T e) {
-        //TODO Implement
-        return false;
-    }
-
-    @Override
-    public T remove(int index) throws IndexOutOfBoundsException {
-        if (isOutOfBounds(index)) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        Node<T> nodeToRemove = searchNode(index);
+    private T remove(Node<T> nodeToRemove) {
         if (this.size == 1) {
             this.head = null;
             this.tail = null;
@@ -127,6 +114,27 @@ public class LinkedList<T> implements List<T> {
         --this.size;
 
         return nodeToRemove.data;
+    }
+
+    @Override
+    public boolean remove(T e) {
+        Node<T> nodeToRemove = searchNode(e);
+        if (nodeToRemove == null) {
+            return false;
+        }
+        remove(nodeToRemove);
+
+        return true;
+    }
+
+    @Override
+    public T remove(int index) throws IndexOutOfBoundsException {
+        if (isOutOfBounds(index)) {
+            throw new IndexOutOfBoundsException();
+        }
+        Node<T> nodeToRemove = searchNode(index);
+
+        return remove(nodeToRemove);
     }
 
     @Override

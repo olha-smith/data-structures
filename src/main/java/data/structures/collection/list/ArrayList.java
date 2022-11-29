@@ -3,7 +3,6 @@ package data.structures.collection.list;
 import data.structures.collection.Iterator;
 import data.structures.exceptions.IndexOutOfBoundsException;
 
-//FIXME one == two -> one.equals(two)
 public class ArrayList<T> implements List<T> {
     static final int INITIAL_CAPACITY = 5;
     static final float LOAD_FACTOR = 0.6f;
@@ -34,7 +33,7 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean contains(T data) {
         for (int i = 0; i < size; i++) {
-            if (this.array[i] == data) {
+            if (this.array[i].equals(data)) {
                 return true;
             }
         }
@@ -115,7 +114,17 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public boolean remove(T e) {
-        //TODO implement
+        for (int i = 0; i < this.size(); i++) {
+            if (this.array[i].equals(e)) {
+                while (i < this.size) {
+                    this.array[i] = this.array[i + 1];
+                    i++;
+                }
+                this.size--;
+                return true;
+            }
+        }
+
         return false;
     }
 
