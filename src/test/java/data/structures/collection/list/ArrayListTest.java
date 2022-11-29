@@ -112,6 +112,26 @@ class ArrayListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(index));
     }
 
+    @Test
+    void Remove_WhenValueInList_ShouldRemoveValue() {
+        String valueToRemove = "Hello";
+        ArrayList<String> list = ArrayList.of(valueToRemove, "World");
+
+        assertTrue(list.remove(valueToRemove));
+        assertFalse(list.contains(valueToRemove));
+    }
+
+    @Test
+    void Remove_WhenSameValuesInList_ShouldRemoveFirstValue() {
+        String valueToRemove = "Hello";
+        ArrayList<String> list = ArrayList.of(valueToRemove, "World", valueToRemove);
+        Integer expectedSize = list.size() - 1;
+
+        assertTrue(list.remove(valueToRemove));
+        assertTrue(list.contains(valueToRemove));
+        assertEquals(expectedSize, list.size());
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 10, 2700})
     void Add_WhenIndexOutOfBounds_ShouldThrowException(int index) {

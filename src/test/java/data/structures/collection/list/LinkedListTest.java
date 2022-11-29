@@ -87,6 +87,26 @@ public class LinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));
     }
 
+    @Test
+    public void Remove_WhenValueInList_ShouldRemoveValue() {
+        String valueToRemove = "Hello";
+        LinkedList<String> list = LinkedList.of(valueToRemove, "World", "!", "");
+
+        assertTrue(list.remove(valueToRemove));
+        assertFalse(list.contains(valueToRemove));
+    }
+
+    @Test
+    public void Remove_WhenSameValueInList_ShouldRemoveFirstValue() {
+        Integer valueToRemove = 5;
+        LinkedList<Integer> list = LinkedList.of(valueToRemove, 1, 10, 5);
+        Integer expectedSize = list.size() - 1;
+
+        assertTrue(list.remove(valueToRemove));
+        assertTrue(list.contains(valueToRemove));
+        assertEquals(expectedSize, list.size());
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {0, 1, 2, 3})
     public void Set_WhenNotEmpty_ShouldReplaceOldElementWithNew(int index) throws IndexOutOfBoundsException {
